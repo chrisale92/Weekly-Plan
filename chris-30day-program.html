@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chris — 30-Day Program</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  :root {
+    --black: #0e0e0e;
+    --surface: #161616;
+    --card: #1e1e1e;
+    --border: #2a2a2a;
+    --accent: #c8f54a;
+    --accent-dim: rgba(200,245,74,0.12);
+    --accent-mid: rgba(200,245,74,0.06);
+    --red: #e84040;
+    --amber: #f5a623;
+    --blue: #4a9ef5;
+    --text: #e8e8e8;
+    --muted: #888;
+    --faint: #444;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(14,14,14,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    padding: 16px 24px 16px 0;
+    border-right: 1px solid var(--border);
+    margin-right: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 18px 16px;
+    white-space: nowrap;
+    transition: color 0.2s;
+    flex-shrink: 0;
+  }
+  nav a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 64px 24px 48px;
+    max-width: 960px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 10vw, 96px);
+    line-height: 0.92;
+    letter-spacing: 2px;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 span { color: var(--accent); }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 32px;
+  }
+
+  .stat-box {
+    background: var(--surface);
+    padding: 16px 20px;
+  }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--accent);
+    letter-spacing: 1px;
+  }
+
+  .stat-unit {
+    font-size: 12px;
+    color: var(--muted);
+    margin-left: 2px;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 56px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    padding: 3px 8px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .section-tag.red { color: var(--red); background: rgba(232,64,64,0.12); }
+  .section-tag.amber { color: var(--amber); background: rgba(245,166,35,0.12); }
+  .section-tag.blue { color: var(--blue); background: rgba(74,158,245,0.12); }
+
+  .section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 6vw, 52px);
+    letter-spacing: 1px;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  /* ── DAILY NON-NEG ── */
+  .vacuum-card {
+    background: var(--accent-dim);
+    border: 1px solid rgba(200,245,74,0.3);
+    padding: 28px 32px;
+    margin-bottom: 12px;
+  }
+
+  .vacuum-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--accent);
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .vacuum-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 10px;
+  }
+
+  .vacuum-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(0,0,0,0.3);
+    padding: 12px 14px;
+  }
+
+  .step-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .step-text {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .rounds-badge {
+    display: inline-block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: var(--black);
+    background: var(--accent);
+    padding: 4px 16px;
+    letter-spacing: 2px;
+    margin-top: 16px;
+  }
+
+  /* ── WEEK GRID ── */
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+
+  .day-cell {
+    background: var(--surface);
+    padding: 14px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .day-cell:hover { background: var(--card); }
+
+  .day-cell.active { background: var(--accent-dim); }
+
+  .day-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .day-type {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .day-cell.rest .day-type { color: var(--faint); }
+  .day-cell.train .day-type { color: var(--accent); }
+  .day-cell.zone2 .day-type { color: var(--blue); }
+  .day-cell.psmf .day-type { color: var(--amber); }
+
+  /* ── SESSION CARDS ── */
+  .session-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 4px;
+  }
+
+  @media (max-width: 680px) {
+    .session-grid { grid-template-columns: 1fr; }
+    .week-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .session-card {
+    background: var(--card);
+    padding: 28px 24px;
+  }
+
+  .session-day {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .session-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 1px;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1;
+  }
+
+  .session-focus {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  /* ── EXERCISE TABLE ── */
+  .ex-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .ex-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--faint);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 0 0 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ex-table td {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(42,42,42,0.5);
+    vertical-align: top;
+  }
+
+  .ex-table tr:last-child td { border-bottom: none; }
+
+  .ex-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .ex-name.jack {
+    color: var(--accent);
+  }
+
+  .jack-dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+
+  .ex-sets {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+    padding-right: 12px;
+  }
+
+  .ex-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  .ex-table td:nth-child(2) { padding-right: 12px; white-space: nowrap; }
+  .ex-table td:nth-child(3) { padding-right: 12px; white-space: nowrap; }
+
+  /* ── NUTRITION ── */
+  .macro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+
+  .macro-card {
+    background: var(--card);
+    padding: 22px 20px;
+  }
+
+  .macro-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .macro-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    color: var(--accent);
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+
+  .macro-unit {
+    font-size: 13px;
+    color: var(--muted);
+    margin-left: 3px;
+  }
+
+  .macro-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .day-type-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 520px) {
+    .day-type-grid { grid-template-columns: 1fr; }
+    .macro-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .day-type-card {
+    background: var(--card);
+    padding: 24px;
+  }
+
+  .day-type-card h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+
+  .day-type-card.training h4 { color: var(--accent); }
+  .day-type-card.psmf h4 { color: var(--amber); }
+
+  .food-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+
+  .food-row:last-child { border-bottom: none; }
+
+  .food-name { color: var(--text); }
+  .food-macro { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+
+  .meal-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+
+  .meal-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--card);
+  }
+
+  .meal-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .meal-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .meal-body {
+    padding: 14px 20px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── HEALTH PROTOCOLS ── */
+  .protocol-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .protocol-card {
+    background: var(--card);
+    padding: 22px 20px;
+  }
+
+  .protocol-icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .protocol-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .protocol-timing {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  .protocol-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── MOBILITY ── */
+  .mobility-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+  }
+
+  .mobility-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--faint);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 0 0 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mobility-table td {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(42,42,42,0.5);
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  .mobility-table td:not(:first-child) {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+    padding-right: 16px;
+  }
+
+  .mobility-table tr:last-child td { border-bottom: none; }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .check-day {
+    background: var(--card);
+    padding: 20px 22px;
+  }
+
+  .check-day-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .check-day-name.rest-day { color: var(--faint); }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 5px 0;
+    font-size: 13px;
+    color: var(--text);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .check-item input[type="checkbox"] {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 1px solid var(--faint);
+    background: transparent;
+    flex-shrink: 0;
+    margin-top: 2px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.15s;
+  }
+
+  .check-item input[type="checkbox"]:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .check-item input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: -1px;
+    left: 2px;
+    font-size: 11px;
+    color: var(--black);
+    font-weight: 700;
+  }
+
+  .check-item label { cursor: pointer; line-height: 1.4; }
+
+  .check-item.done label { color: var(--faint); text-decoration: line-through; }
+
+  /* ── JACK'S 10 LEGEND ── */
+  .legend-box {
+    background: var(--accent-mid);
+    border: 1px solid rgba(200,245,74,0.15);
+    padding: 16px 20px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .legend-box .jack-dot { flex-shrink: 0; }
+
+  .legend-text {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .legend-text strong { color: var(--accent); }
+
+  /* ── TARGETS ── */
+  .target-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .target-card {
+    background: var(--card);
+    padding: 20px;
+  }
+
+  .target-area {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .target-goal {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .target-arrow {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--accent);
+    margin-right: 4px;
+  }
+
+  /* ── DIVIDER ── */
+  .rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 28px 0;
+  }
+
+  /* ── UTILITY ── */
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .muted { color: var(--muted); }
+  .accent { color: var(--accent); }
+
+  .infobox {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .infobox strong { color: var(--text); }
+
+  footer {
+    text-align: center;
+    padding: 40px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--faint);
+    letter-spacing: 0.1em;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">CHRIS / 30</div>
+  <a href="#daily">Daily</a>
+  <a href="#schedule">Schedule</a>
+  <a href="#monday">Mon</a>
+  <a href="#tuesday">Tue</a>
+  <a href="#thursday">Thu</a>
+  <a href="#friday">Fri</a>
+  <a href="#saturday">Sat</a>
+  <a href="#nutrition">Nutrition</a>
+  <a href="#health">Health</a>
+  <a href="#mobility">Mobility</a>
+  <a href="#checklist">Checklist</a>
+  <a href="#targets">Targets</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Phase 1 · Masculine Physique Protocol</div>
+  <h1>BUILD THE<br><span>FOUNDATION</span></h1>
+
+  <div class="hero-stats">
+    <div class="stat-box">
+      <div class="stat-label">Current Weight</div>
+      <div class="stat-val">168<span class="stat-unit">lbs</span></div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">Skeletal Muscle</div>
+      <div class="stat-val">82<span class="stat-unit">lbs</span></div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">Body Fat</div>
+      <div class="stat-val">13.3<span class="stat-unit">%</span></div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">InBody Score</div>
+      <div class="stat-val">87</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">Daily Calories</div>
+      <div class="stat-val">1900<span class="stat-unit">kcal</span></div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">Training Days</div>
+      <div class="stat-val">4<span class="stat-unit">/wk</span></div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">Fasting Window</div>
+      <div class="stat-val">18–20<span class="stat-unit">hr</span></div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">ECW Ratio</div>
+      <div class="stat-val">0.382</div>
+    </div>
+  </div>
+</div>
+
+<!-- DAILY NON-NEGOTIABLES -->
+<div class="section" id="daily">
+  <div class="section-header">
+    <span class="section-tag">Every Single Day</span>
+    <h2>Daily Non-Negotiables</h2>
+  </div>
+
+  <div class="vacuum-card">
+    <div class="vacuum-title">⚡ Abdominal Vacuum — 3 Rounds Daily</div>
+    <div class="vacuum-steps">
+      <div class="vacuum-step"><span class="step-num">01</span><span class="step-text">Maximally exhale — empty every bit of air from the lungs</span></div>
+      <div class="vacuum-step"><span class="step-num">02</span><span class="step-text">Maximally suck stomach in — pull navel to spine as hard as possible</span></div>
+      <div class="vacuum-step"><span class="step-num">03</span><span class="step-text">Hold for 5–10 seconds, stay tight throughout</span></div>
+      <div class="vacuum-step"><span class="step-num">04</span><span class="step-text">Drop hips back with stomach still fully sucked in</span></div>
+      <div class="vacuum-step"><span class="step-num">05</span><span class="step-text">Keep hips down, pull hard on sofa/door to stretch the stomach</span></div>
+    </div>
+    <div class="rounds-badge">3 ROUNDS · 5–10 SEC HOLDS · EVERY MORNING FASTED</div>
+  </div>
+
+  <div class="infobox">
+    <strong>Why this matters for you specifically:</strong> Your trunk fat registered at 118.1% of norm on your InBody — the highest of any segment. The ab vacuum directly targets the transverse abdominis, cinching the waist from the inside out. 3 minutes a day, no excuses. Do it fasted, first thing, before your Zone 2 or immediately after waking.
+  </div>
+
+  <hr class="rule">
+
+  <div class="protocol-grid">
+    <div class="protocol-card">
+      <span class="protocol-icon">☀️</span>
+      <div class="protocol-name">Morning Sunlight</div>
+      <div class="protocol-timing">Within 30 min of waking · 10–20 min</div>
+      <div class="protocol-desc">Circadian reset, cortisol regulation. No sunglasses. Face the sun directly. Non-negotiable for hormone health and your skin adaptation protocol.</div>
+    </div>
+    <div class="protocol-card">
+      <span class="protocol-icon">🧘</span>
+      <div class="protocol-name">Buddhist Meditation</div>
+      <div class="protocol-timing">Morning or pre-sleep · 10–20 min</div>
+      <div class="protocol-desc">Cortisol regulation — your stress load running Nublume, KYN, GUMI, and trading simultaneously is real. This is recovery work, not optional.</div>
+    </div>
+    <div class="protocol-card">
+      <span class="protocol-icon">💊</span>
+      <div class="protocol-name">Supplement Stack</div>
+      <div class="protocol-timing">Per existing protocol</div>
+      <div class="protocol-desc">Astaxanthin, polypodium leucotomos, beef organ complex, electrolytes, matcha, yohimbine (fasted). Astaxanthin directly supports your ECW ratio reduction.</div>
+    </div>
+    <div class="protocol-card">
+      <span class="protocol-icon">🕶️</span>
+      <div class="protocol-name">Blue Light Blocking</div>
+      <div class="protocol-timing">After sunset · every evening</div>
+      <div class="protocol-desc">Sleep quality drives muscle preservation on a deficit. Blue light post-sunset tanks melatonin. Glasses on the moment the sun drops.</div>
+    </div>
+    <div class="protocol-card">
+      <span class="protocol-icon">⚖️</span>
+      <div class="protocol-name">Weekly Weigh-In</div>
+      <div class="protocol-timing">Every Monday · fasted · post-void</div>
+      <div class="protocol-desc">Same day, same conditions. Losing 1.5–2 lbs/week = stay the course. Stalled 2 weeks straight = drop 150 kcal. Losing &gt;2.5 lbs/week = add 150 kcal.</div>
+    </div>
+    <div class="protocol-card">
+      <span class="protocol-icon">🌡️</span>
+      <div class="protocol-name">Sauna</div>
+      <div class="protocol-timing">2–3x per week · post-training or evening</div>
+      <div class="protocol-desc">Visceral fat reduction, inflammation control, recovery. Your visceral fat level 4 drops with consistent sauna. Prioritize on non-PSMF days.</div>
+    </div>
+  </div>
+</div>
+
+<!-- WEEKLY SCHEDULE -->
+<div class="section" id="schedule">
+  <div class="section-header">
+    <span class="section-tag">Overview</span>
+    <h2>Weekly Schedule</h2>
+  </div>
+
+  <div class="week-grid">
+    <div class="day-cell train" onclick="location.href='#monday'">
+      <div class="day-name">MON</div>
+      <div class="day-type">Upper A<br>Traps · Back</div>
+    </div>
+    <div class="day-cell train" onclick="location.href='#tuesday'">
+      <div class="day-name">TUE</div>
+      <div class="day-type">Lower A<br>Quads · Glutes</div>
+    </div>
+    <div class="day-cell psmf">
+      <div class="day-name">WED</div>
+      <div class="day-type">Zone 2<br>PSMF · Mobility</div>
+    </div>
+    <div class="day-cell train" onclick="location.href='#thursday'">
+      <div class="day-name">THU</div>
+      <div class="day-type">Upper B<br>Chest · Delts</div>
+    </div>
+    <div class="day-cell train" onclick="location.href='#friday'">
+      <div class="day-name">FRI</div>
+      <div class="day-type">Lower B<br>Hams · Glutes</div>
+    </div>
+    <div class="day-cell zone2" onclick="location.href='#saturday'">
+      <div class="day-name">SAT</div>
+      <div class="day-type">Zone 2<br>Mobility · Walk</div>
+    </div>
+    <div class="day-cell rest">
+      <div class="day-name">SUN</div>
+      <div class="day-type">Full Rest<br>Meal Prep</div>
+    </div>
+  </div>
+
+  <div class="infobox">
+    <strong>First 30 days rule:</strong> No training to failure. Stop 2–3 reps shy every set. Slow eccentrics (2–3 sec lowering phase). Before each set ask yourself: <em>"What muscle am I about to use?"</em> Build the connection first — the load follows. Progressive overload starts Week 2 — add small weight or one rep per week where form allows.
+  </div>
+
+  <div class="legend-box">
+    <span class="jack-dot"></span>
+    <span class="legend-text"><strong>Green dot = Jack's Priority Exercise.</strong> These are the 10 exercises from Jack's framework woven throughout every session. They take priority position in each workout — primaries first, accessories after.</span>
+  </div>
+</div>
+
+<!-- MONDAY -->
+<div class="section" id="monday">
+  <div class="section-header">
+    <span class="section-tag train">Monday</span>
+    <h2>Upper A — Traps, Back, Rear Delt</h2>
+  </div>
+
+  <div class="session-grid" style="grid-template-columns:1fr;">
+    <div class="session-card">
+      <div class="session-focus">Primary target: Traps & upper back thickness. Initiate every pull with the traps. This session sets the foundation for your masculine upper body silhouette.</div>
+
+      <table class="ex-table">
+        <thead>
+          <tr>
+            <th>Exercise</th>
+            <th>Sets</th>
+            <th>Reps</th>
+            <th>Key Cue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="jack-dot"></span><span class="ex-name jack">Neck Curl</span></td>
+            <td class="ex-sets">3</td>
+            <td class="ex-sets">15–20</td>
+            <td><span class="ex-note">Slow and controlled. Most overlooked muscle — builds a powerful look in a t-shirt.</span></td>
+          </tr>
+          <tr>
+            <td><span class="jack-dot"></span><span class="ex-name jack">Rack Pull</span><div class="ex-note">Smith machine or squat rack</div></td>
+            <td class="ex-sets">4</td>
+            <td class="ex-sets">8–10</td>
+            <td><span class="ex-note">Initiate with traps and upper back — NOT legs. Squeeze shoulder blades back and DOWN at the top. This is your primary trap builder.</span></td>
+          </tr>
+          <tr>
+            <td><span class="jack-dot"></span><span class="ex-name jack">Neutral Grip Pull-Up</span></td>
+            <td class="ex-sets">4</td>
+            <td class="ex-sets">8–12</td>
+            <td><span class="ex-note">Neutral grip = mid/upper back thickness, not lat width. Full dead hang at bottom. Chin clears bar at top.</span></td>
+          </tr>
+          <tr>
+            <td><span class="ex-name">Chest-Supported DB Row</span></td>
+            <td class="ex-sets">3</td>
+            <td class="ex-sets">12–15</td>
+            <td><span class="ex-note">Scapula retraction focus. Elbow slightly flared. Squeeze at peak contraction.</span></td>
+          </tr>
+          <tr>
+            <td><span class="ex-name">Face Pull (rope, cable)</span></td>
+            <td class="ex-sets">3</td>
+            <td class="ex-sets">20</td>
+            <td><span class="ex-note">Rear delt and external rotation. Use as warm-up or finisher. Non-negotiable every upper session.</span></td>
+          </tr>
+          <tr>
+            <td><span class="jack-dot"></span><span class="ex-name jack">Farmer's Walk</span></td>
+            <td class="ex-sets">3</td>
+            <td class="ex-sets">40m</td>
+            <td><span class="ex-note">Heavy DBs. Chest tall, shoulders packed down. Traps, grip, posture, core — all in one.</span></td>
+          </tr>
+          <tr>
+            <td><span class="ex-name">Ab Vacuum</span></td>
+            <td class="ex-sets">3 rounds</td>
+            <td class="ex-sets">5–10 sec</td>
+            <td><span class="ex-note">Daily — do it here if you haven't already this morning.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- TUESDAY -->
+<div class="section" id="tuesday">
+  <div class="section-header">
+    <span class="section-tag train">Tuesday</span>
+    <h2>Lower A — Quads &amp; Glutes</h2>
+  </div>
+
+  <div class="session-grid" style="grid-template-columns:1fr;">
+    <div class="session-card">
+      <div class="session-focus">Primary target: Quad development and glute activation. Deep leg press is your primary quad builder — high rep range, full ROM. Glutes need deliberate activation before loading.</div>
+
+      <table class="ex-table">
+        <thead>
+          <tr>
+            <th>Exercise</th>
+            <th>Sets</th>
+            <th>Reps</th>
+            <th>Key Cue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="ex-name">Barbell Hip Thrust</span></td>
+            <td class="ex-sets">4</td>
+            <td class="ex-sets">12–15</td>
+            <td><span class="ex-note">1 sec squeeze at the top. Activate glutes before you load them heavy. Don't rush this opener.</span></td>
+          </tr>
+          <tr>
+            <td><span class="jack-dot"></span><span class="ex-name jack">Deep Leg Press</span><div class="ex-note">Plate under bum, wedges in shoes if available</div></td>
+            <td class="ex-sets">4</td>
+            <td class="ex-sets">15–20</td>
+            <td><span class="ex-note">Full ROM — Jack's non-negotiable. Knees track out on descent. This rep range blows up the quads when you get stronger on it progressively.</span></td>
+          </tr>
+          <tr>
+            <td><span class="jack-dot"></span><span class="ex-name jack">Front Foot Elevated Split Squat</span></td>
+            <td class="ex-sets">4</td>
+            <td class="ex-sets">10 each</td>
+            <td><span class="ex-note">Quad and glute bias. Control the descent — these expose imbalances. No ego on load.</span></td>
+          </tr>
+          <tr>
+            <td><span class="ex-name">Leg Extension</span></td>
+            <td class="ex-sets">3</td>
+            <td class="ex-sets">15</td>
+            <td><span class="ex-note">Slow eccentric. Terminal extension squeeze — finish the quads completely.</span></td>
+          </tr>
+          <tr>
+            <td><span class="ex-name">Standing Cable Hip Abduction</span></td>
+            <td class="ex-sets">3</td>
+            <td class="ex-sets">15 each</td>
+            <td><span class="ex-note">Glute med. Shapes the outer glute — directly addresses your glute weakness flagged on InBody.</span></td>
+          </tr>
+          <tr>
+            <td><span class="jack-dot"></span><span class="ex-name jack">Barbell Ab Crunch</span></td>
+            <td class="ex-sets">3</td>
+            <td class="ex-sets">12–15</td>
+            <td><span class="ex-note">Load the midsection — bodyweight alone won't build thickness. Full contraction, slow eccentric. Nail bodyweight form first.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- WEDNESDAY CARD -->
+<div class="section" id="wednesday">
+  <div class="section-header">
+    <span class="section-tag amber">Wednesday</span>
+    <h2>Recovery — Zone 2 + PSMF + Mobility</h2>
+  </div>
+  <div class="session-grid" style="grid-template-columns:1fr 1fr;">
+    <div class="session-card">
+      <div class="session-day">Zone 2 Cardio</div>
+      <div class="session-title">Fasted Morning</div>
+      <div class="session-focus">35–45 min · 130–140 BPM · nose breathing preferred</div>
+      <div class="ex-note" style="color:var(--muted); font-size:13px; line-height:1.7;">Fat oxidation in fasted state. Nervous system down-regulation. Do not add HIIT on PSMF days — cortisol on near-zero calories is counterproductive. Zone 2 only today.</div>
+    </div>
+    <div class="session-card">
+      <div class="session-day">PSMF Day</div>
+      <div class="session-title">Nutrition Protocol</div>
+      <div class="session-focus">1,200–1,400 kcal · protein-sparing modified fast</div>
+      <div class="ex-note" style="color:var(--muted); font-size:13px; line-height:1.7;">Protein: 200–220g. Fat: 15–25g. Carbs: near zero.<br>Foods: white fish, egg whites, lean ground beef (96%), bone broth. This is the weekly fat-burning accelerator — lock it in.</div>
+    </div>
+  </div>
+  <div class="infobox" style="margin-top:8px;">
+    <strong>Mobility session today (15 min).</strong> See the Mobility section below for the full circuit. Wednesday + Saturday are your two mobility days — non-negotiable for anterior pelvic tilt correction and glute activation.
+  </div>
+</div>
+
+<!-- THURSDAY -->
+<div class="section" id="thursday">
+  <div class="section-header">
+    <span class="section-tag train">Thursday</span>
+    <h2>Upper B — Chest, Shoulders, Triceps</h2>
+  </div>
+
+  <div class="session-grid" style="grid-template-columns:1fr;">
+    <div class="session-card">
+      <div class="session-focus">Primary target: Pressing density and shoulder development. Dead stop press removes all momentum — strength gains here are legitimate. Always open with rear delts to protect posture.</div>
+
+      <table class="ex-table">
+        <thead>
+          <tr>
+            <th>Exercise</th>
+            <th>Sets</th>
+            <th>Reps</th>
+            <th>Key Cue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="ex-name">Face Pull / Rear Delt Warm-Up</span></td>
+            <td class="ex-sets">3</td>
+            <td class="ex-sets">20</td>
+            <td><span class="ex-note">Open every upper session with this. Non-negotiable. Protects your shoulder and rectifies internal rotation.</span></td>
+          </tr>
+          <tr>
+            <td><span class="jack-dot"></span><span class="ex-name jack">Dead Stop Press</span><div class="ex-note">DB or barbell · flat or incline</div></td>
+            <td class="ex-sets">4</td>
+            <td class="ex-sets">8–10</td>
+            <td><span class="ex-note">Lower to chest/pins, dead stop, remove all momentum. Honest strength — no cheating the stretch. Builds real density to the physique.</span></td>
+          </tr>
+          <tr>
+            <td><span class="jack-dot"></span><span class="ex-name jack">Dips</span></td>
+            <td class="ex-sets">4</td>
+            <td class="ex-sets">8–12</td>
+            <td><span class="ex-note">Maximally inhale on descent to get deepest ROM possible. Lean forward = chest. Upright = tricep. Full range every rep — no half reps.</span></td>
+          </tr>
+          <tr>
+            <td><span class="ex-name">Cable Lateral Raise</span></td>
+            <td class="ex-sets">3</td>
+            <td class="ex-sets">15–20</td>
+            <td><span class="ex-note">Cable keeps tension throughout. Cable behind body slightly. Light and controlled — feel the delt the whole way.</span></td>
+          </tr>
+          <tr>
+            <td><span class="ex-name">Seated Overhead DB Press</span></td>
+            <td class="ex-sets">3</td>
+            <td class="ex-sets">10–12</td>
+            <td><span class="ex-note">Shoulder density. Controlled, no lumbar hyperextension. Neutral or pronated grip based on shoulder comfort.</span></td>
+          </tr>
+          <tr>
+            <td><span class="jack-dot"></span><span class="ex-name jack">Neck Curl</span></td>
+            <td class="ex-sets">2</td>
+            <td class="ex-sets">15</td>
+            <td><span class="ex-note">Second hit of the week. The neck is genuinely that overlooked — train it twice.</span></td>
+          </tr>
+          <tr>
+            <td><span class="ex-name">Ab Vacuum</span></td>
+            <td class="ex-sets">3 rounds</td>
+            <td class="ex-sets">5–10 sec</td>
+            <td><span class="ex-note">Daily — if you haven't done it yet today, do it here.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- FRIDAY -->
+<div class="section" id="friday">
+  <div class="section-header">
+    <span class="section-tag train">Friday</span>
+    <h2>Lower B — Hamstrings, Glutes, Posterior Chain</h2>
+  </div>
+
+  <div class="session-grid" style="grid-template-columns:1fr;">
+    <div class="session-card">
+      <div class="session-focus">Primary target: Posterior chain — hamstrings and glutes from a hip-hinge dominant angle. RDL is your cornerstone movement here. End the week with Farmer's Walk conditioning.</div>
+
+      <table class="ex-table">
+        <thead>
+          <tr>
+            <th>Exercise</th>
+            <th>Sets</th>
+            <th>Reps</th>
+            <th>Key Cue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="jack-dot"></span><span class="ex-name jack">Romanian Deadlift</span></td>
+            <td class="ex-sets">4</td>
+            <td class="ex-sets">10–12</td>
+            <td><span class="ex-note">Feel the hamstring stretch at the bottom — this is the whole point. Hip hinge, not squat. Don't round the lower back.</span></td>
+          </tr>
+          <tr>
+            <td><span class="jack-dot"></span><span class="ex-name jack">Bulgarian Split Squat</span><div class="ex-note">Back foot elevated</div></td>
+            <td class="ex-sets">4</td>
+            <td class="ex-sets">10 each</td>
+            <td><span class="ex-note">More glute-dominant than FFESS. Combined across the week you're hitting both split squat variations — full glute development.</span></td>
+          </tr>
+          <tr>
+            <td><span class="ex-name">Lying or Seated Leg Curl</span></td>
+            <td class="ex-sets">3</td>
+            <td class="ex-sets">12–15</td>
+            <td><span class="ex-note">3 sec eccentric — slow is everything. Hamstring curl is all about the lowering phase.</span></td>
+          </tr>
+          <tr>
+            <td><span class="ex-name">Cable Pull-Through</span></td>
+            <td class="ex-sets">3</td>
+            <td class="ex-sets">15</td>
+            <td><span class="ex-note">Hip hinge pattern. Drive hard at lockout with the glutes. Feel the posterior chain engage.</span></td>
+          </tr>
+          <tr>
+            <td><span class="ex-name">Adductor Machine</span></td>
+            <td class="ex-sets">3</td>
+            <td class="ex-sets">15–20</td>
+            <td><span class="ex-note">Inner thigh and glute med contribution. Don't skip — contributes directly to glute shape and lower body fullness.</span></td>
+          </tr>
+          <tr>
+            <td><span class="jack-dot"></span><span class="ex-name jack">Barbell Ab Crunch</span></td>
+            <td class="ex-sets">3</td>
+            <td class="ex-sets">12–15</td>
+            <td><span class="ex-note">Second midsection hit of the week. Load the abs to build density. Full controlled contraction.</span></td>
+          </tr>
+          <tr>
+            <td><span class="jack-dot"></span><span class="ex-name jack">Farmer's Walk — Finisher</span></td>
+            <td class="ex-sets">3</td>
+            <td class="ex-sets">40m</td>
+            <td><span class="ex-note">End the week strong. Core stability, trap endurance, grip, conditioning. Heavy DBs, chest tall.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- SATURDAY -->
+<div class="section" id="saturday">
+  <div class="section-header">
+    <span class="section-tag blue">Saturday</span>
+    <h2>Zone 2 + Mobility + Farmer's Walk</h2>
+  </div>
+
+  <div class="session-grid">
+    <div class="session-card">
+      <div class="session-day">Morning · Fasted</div>
+      <div class="session-title">Zone 2 Cardio</div>
+      <div class="session-focus">35–45 min · 130–140 BPM</div>
+      <div style="font-size:13px; color:var(--muted); line-height:1.7; margin-top:12px;">Nose breathing preferred. Conversational pace — if you can't hold a sentence, you're going too hard. This is fat oxidation and nervous system recovery, not cardio punishment.</div>
+    </div>
+    <div class="session-card">
+      <div class="session-day">Post Zone 2</div>
+      <div class="session-title">Farmer's Walk Finisher</div>
+      <div class="session-focus">3 × 40m · light-moderate load</div>
+      <div style="font-size:13px; color:var(--muted); line-height:1.7; margin-top:12px;">Use as conditioning finisher. Lighter than your training day load. Focus on posture — chest up, shoulders packed, core braced the entire walk.</div>
+    </div>
+  </div>
+</div>
+
+<!-- NUTRITION -->
+<div class="section" id="nutrition">
+  <div class="section-header">
+    <span class="section-tag red">Nutrition</span>
+    <h2>Fuel Protocol</h2>
+  </div>
+
+  <div class="macro-grid">
+    <div class="macro-card">
+      <div class="macro-label">Daily Calories</div>
+      <div class="macro-val">1,900<span class="macro-unit">kcal</span></div>
+      <div class="macro-sub">~700 cal deficit from TDEE</div>
+    </div>
+    <div class="macro-card">
+      <div class="macro-label">Protein</div>
+      <div class="macro-val">218<span class="macro-unit">g</span></div>
+      <div class="macro-sub">1.5g × 145.7 lbs lean mass</div>
+    </div>
+    <div class="macro-card">
+      <div class="macro-label">Fat (Train Days)</div>
+      <div class="macro-val">80<span class="macro-unit">g</span></div>
+      <div class="macro-sub">720 kcal from fat</div>
+    </div>
+    <div class="macro-card">
+      <div class="macro-label">Carbs (Train Days)</div>
+      <div class="macro-val">75<span class="macro-unit">g</span></div>
+      <div class="macro-sub">Timed around training window</div>
+    </div>
+    <div class="macro-card">
+      <div class="macro-label">PSMF Calories</div>
+      <div class="macro-val">1,200<span class="macro-unit">kcal</span></div>
+      <div class="macro-sub">Wed rest days only</div>
+    </div>
+    <div class="macro-card">
+      <div class="macro-label">Eating Window</div>
+      <div class="macro-val">4–6<span class="macro-unit">hr</span></div>
+      <div class="macro-sub">Break fast 12–1pm</div>
+    </div>
+  </div>
+
+  <div class="day-type-grid">
+    <div class="day-type-card training">
+      <h4>Training Days — ~1,900 kcal</h4>
+      <div class="food-row"><span class="food-name">Eggs (whole)</span><span class="food-macro">Protein + fat</span></div>
+      <div class="food-row"><span class="food-name">Ground beef (80/20)</span><span class="food-macro">Protein + fat</span></div>
+      <div class="food-row"><span class="food-name">Salmon</span><span class="food-macro">Protein + omega-3 fat</span></div>
+      <div class="food-row"><span class="food-name">Bone broth</span><span class="food-macro">Collagen + minerals</span></div>
+      <div class="food-row"><span class="food-name">Coconut yogurt</span><span class="food-macro">Fat + probiotic</span></div>
+      <div class="food-row"><span class="food-name">Sweet potato / white rice</span><span class="food-macro">Carbs — train day only</span></div>
+      <div class="food-row"><span class="food-name">Raw carrots + olive oil</span><span class="food-macro">Fiber + fat</span></div>
+      <div class="food-row"><span class="food-name">Beef organ complex</span><span class="food-macro">Micronutrient density</span></div>
+    </div>
+    <div class="day-type-card psmf">
+      <h4>PSMF Days — ~1,200 kcal</h4>
+      <div class="food-row"><span class="food-name">White fish (cod, tilapia)</span><span class="food-macro">Pure protein</span></div>
+      <div class="food-row"><span class="food-name">Egg whites</span><span class="food-macro">Pure protein</span></div>
+      <div class="food-row"><span class="food-name">Lean ground beef (96%)</span><span class="food-macro">Protein, minimal fat</span></div>
+      <div class="food-row"><span class="food-name">Bone broth</span><span class="food-macro">Collagen + electrolytes</span></div>
+      <div class="food-row"><span class="food-name">Electrolytes</span><span class="food-macro">Sodium, potassium, mag</span></div>
+      <div class="food-row"><span class="food-name">Matcha (fasted)</span><span class="food-macro">Energy + antioxidants</span></div>
+      <div class="food-row"><span class="food-name">Target: 200–220g protein</span><span class="food-macro">Fat &lt;25g · Carbs ~0</span></div>
+    </div>
+  </div>
+
+  <div class="meal-block">
+    <div class="meal-header">
+      <span class="meal-time">12–1 PM</span>
+      <span class="meal-name">Meal 1 — Break Fast (Largest Meal)</span>
+    </div>
+    <div class="meal-body">Protein + fat dominant. Eggs, ground beef, salmon, or any combination. Bone broth. This is your biggest meal — you've been fasted 18–20 hrs, protein synthesis is primed. Eat enough here to cover most of your daily protein target.</div>
+  </div>
+
+  <div class="meal-block">
+    <div class="meal-header">
+      <span class="meal-time">3–4 PM</span>
+      <span class="meal-name">Meal 2 — Main (Training Day Carbs Here)</span>
+    </div>
+    <div class="meal-body">Training day: protein + carbs. Sweet potato, white rice, or raw carrots with olive oil. Rest day: protein + fat, no carbs. This meal fuels or refuels depending on when you train.</div>
+  </div>
+
+  <div class="meal-block">
+    <div class="meal-header">
+      <span class="meal-time">6–7 PM</span>
+      <span class="meal-name">Meal 3 — Close the Window (Lighter)</span>
+    </div>
+    <div class="meal-body">Protein + fat, smaller volume. Coconut yogurt, organ complex, smaller protein portion. Close the eating window cleanly — don't let the window creep later or it compresses your fasting period.</div>
+  </div>
+
+  <div class="infobox" style="margin-top: 16px;">
+    <strong>Adjustment protocol:</strong> Weigh every Monday fasted. Losing 1.5–2 lbs/week = don't touch a thing. Losing &gt;2.5 lbs = add 150–200 kcal (fat, not carbs). Stalled 2 weeks of clean compliance = drop 150 kcal or add one Zone 2 session. <strong>Don't fix what isn't broken.</strong>
+  </div>
+</div>
+
+<!-- HEALTH PROTOCOLS -->
+<div class="section" id="health">
+  <div class="section-header">
+    <span class="section-tag blue">Health & Redox</span>
+    <h2>Build the Foundation Inside</h2>
+  </div>
+
+  <div class="infobox">
+    Your <strong>ECW/TBW ratio of 0.382</strong> signals mild systemic inflammation. This is the number to watch alongside body fat. As inflammation drops, this ratio moves toward 0.370 and below. Every protocol in this section targets it directly.
+  </div>
+
+  <div class="protocol-grid" style="margin-top: 20px;">
+    <div class="protocol-card">
+      <span class="protocol-icon">🦶</span>
+      <div class="protocol-name">Grounding</div>
+      <div class="protocol-timing">Morning or post-session</div>
+      <div class="protocol-desc">Feet on earth — grass, sand, soil. Arizona has it year-round. Directly reduces ECW ratio over time. Pairs with morning sun. 10–20 min.</div>
+    </div>
+    <div class="protocol-card">
+      <span class="protocol-icon">🧊</span>
+      <div class="protocol-name">Cold Exposure</div>
+      <div class="protocol-timing">Post-training or morning</div>
+      <div class="protocol-desc">Cold shower or plunge. Reduces inflammation, improves recovery, sharpens mental state. 2–3 min minimum, progressively longer.</div>
+    </div>
+    <div class="protocol-card">
+      <span class="protocol-icon">🔥</span>
+      <div class="protocol-name">Sauna</div>
+      <div class="protocol-timing">2–3x per week</div>
+      <div class="protocol-desc">Visceral fat level 4 on your scan — sauna accelerates this. 15–25 min at 170°F+. Post-training or evening. Not on PSMF days if depleted.</div>
+    </div>
+    <div class="protocol-card">
+      <span class="protocol-icon">😴</span>
+      <div class="protocol-name">Sleep Optimization</div>
+      <div class="protocol-timing">Every night</div>
+      <div class="protocol-desc">Blue light blocked post-sunset. Cool room. Consistent bedtime. Sleep is when muscle is built and fat is oxidized. Non-negotiable on a deficit.</div>
+    </div>
+    <div class="protocol-card">
+      <span class="protocol-icon">🧠</span>
+      <div class="protocol-name">Stress Management</div>
+      <div class="protocol-timing">Daily</div>
+      <div class="protocol-desc">Running Nublume, KYN, GUMI, futures trading, and MycoMind simultaneously is a serious cortisol load. Meditation daily. Chronic stress tanks your ECW ratio and blunts fat loss.</div>
+    </div>
+    <div class="protocol-card">
+      <span class="protocol-icon">🌿</span>
+      <div class="protocol-name">Anti-Inflammatory Diet</div>
+      <div class="protocol-timing">Every meal</div>
+      <div class="protocol-desc">Animal-based, whole food, locally and seasonally sourced where possible. No seed oils, no processed food, no alcohol during this phase. Food is your primary redox tool.</div>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILITY -->
+<div class="section" id="mobility">
+  <div class="section-header">
+    <span class="section-tag">Wed + Sat</span>
+    <h2>Posture &amp; Mobility Circuit</h2>
+  </div>
+
+  <div class="infobox">
+    <strong>Your primary postural issue: Anterior pelvic tilt</strong> — flagged by your InBody weak points (glutes and abdomen). This circuit directly corrects it. Wednesday and Saturday, 15 minutes. Do it before or after Zone 2, not after lifting.
+  </div>
+
+  <table class="mobility-table">
+    <thead>
+      <tr>
+        <th>Exercise</th>
+        <th>Sets</th>
+        <th>Duration / Reps</th>
+        <th>Target</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Couch Stretch</td>
+        <td>2</td>
+        <td>60 sec each side</td>
+        <td style="color:var(--muted); font-size:12px;">Hip flexor — tight hip flexors drive anterior pelvic tilt</td>
+      </tr>
+      <tr>
+        <td>90/90 Hip Stretch</td>
+        <td>2</td>
+        <td>60 sec each side</td>
+        <td style="color:var(--muted); font-size:12px;">Hip internal/external rotation — improves glute activation</td>
+      </tr>
+      <tr>
+        <td>Dead Bug</td>
+        <td>3</td>
+        <td>10 slow reps</td>
+        <td style="color:var(--muted); font-size:12px;">Deep core stability — directly corrects anterior tilt</td>
+      </tr>
+      <tr>
+        <td>Glute Bridge (bodyweight)</td>
+        <td>2</td>
+        <td>20 reps with squeeze</td>
+        <td style="color:var(--muted); font-size:12px;">Glute activation before heavy sessions</td>
+      </tr>
+      <tr>
+        <td>Cat-Cow + Child's Pose flow</td>
+        <td>2</td>
+        <td>10 reps</td>
+        <td style="color:var(--muted); font-size:12px;">Spinal decompression and lumbar reset</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="infobox" style="margin-top: 20px;">
+    <strong>Upper body posture note:</strong> Internal shoulder rotation is addressed every upper body session by opening with face pulls and rear delt work. You're hitting this 2x per week. The mobility circuit handles the lower body tilt. Both run simultaneously throughout the 30 days.
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div class="section" id="checklist">
+  <div class="section-header">
+    <span class="section-tag">Execute Daily</span>
+    <h2>Weekly Checklist</h2>
+  </div>
+
+  <div class="infobox" style="margin-bottom: 24px;">Checkboxes reset each session — this is a reference guide, not a saved tracker. Run through it each morning to know exactly what's on the plate today.</div>
+
+  <div class="checklist">
+
+    <div class="check-day">
+      <div class="check-day-name">Monday — Upper A</div>
+      <label class="check-item"><input type="checkbox"> <label>Fasted Zone 2 cardio (morning)</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Ab vacuum — 3 rounds</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Morning sunlight — 10–20 min</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Weekly weigh-in (fasted, post-void)</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Neck curl — 3×15–20</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Rack pull — 4×8–10</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Neutral grip pull-up — 4×8–12</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Chest-supported row — 3×12–15</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Face pulls — 3×20</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Farmer's walk — 3×40m</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Break fast 12–1pm</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Blue light glasses after sunset</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Meditation</label></label>
+    </div>
+
+    <div class="check-day">
+      <div class="check-day-name">Tuesday — Lower A</div>
+      <label class="check-item"><input type="checkbox"> <label>Fasted Zone 2 cardio (morning)</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Ab vacuum — 3 rounds</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Morning sunlight — 10–20 min</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Hip thrust — 4×12–15</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Deep leg press — 4×15–20</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Front foot elevated split squat — 4×10 each</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Leg extension — 3×15</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Cable hip abduction — 3×15 each</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Barbell ab crunch — 3×12–15</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Break fast 12–1pm (carbs in Meal 2)</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Blue light glasses after sunset</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Meditation</label></label>
+    </div>
+
+    <div class="check-day">
+      <div class="check-day-name" style="color:var(--amber)">Wednesday — Recovery</div>
+      <label class="check-item"><input type="checkbox"> <label>Ab vacuum — 3 rounds</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Morning sunlight — 10–20 min</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Zone 2 fasted — 35–45 min</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Mobility circuit — 15 min</label></label>
+      <label class="check-item"><input type="checkbox"> <label>PSMF nutrition — 200–220g protein</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Fat under 25g today</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Carbs near zero today</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Electrolytes</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Blue light glasses after sunset</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Meditation</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Sauna (if not depleted)</label></label>
+    </div>
+
+    <div class="check-day">
+      <div class="check-day-name">Thursday — Upper B</div>
+      <label class="check-item"><input type="checkbox"> <label>Fasted Zone 2 cardio (morning)</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Ab vacuum — 3 rounds</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Morning sunlight — 10–20 min</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Face pull warm-up — 3×20</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Dead stop press — 4×8–10</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Dips — 4×8–12 (full ROM)</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Cable lateral raise — 3×15–20</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Overhead DB press — 3×10–12</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Neck curl — 2×15</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Break fast 12–1pm (carbs in Meal 2)</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Blue light glasses after sunset</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Meditation</label></label>
+    </div>
+
+    <div class="check-day">
+      <div class="check-day-name">Friday — Lower B</div>
+      <label class="check-item"><input type="checkbox"> <label>Fasted Zone 2 cardio (morning)</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Ab vacuum — 3 rounds</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Morning sunlight — 10–20 min</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Romanian deadlift — 4×10–12</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Bulgarian split squat — 4×10 each</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Leg curl — 3×12–15 (3 sec eccentric)</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Cable pull-through — 3×15</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Adductor machine — 3×15–20</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Barbell ab crunch — 3×12–15</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Farmer's walk — 3×40m</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Break fast 12–1pm (carbs in Meal 2)</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Blue light glasses after sunset</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Meditation</label></label>
+    </div>
+
+    <div class="check-day">
+      <div class="check-day-name" style="color:var(--blue)">Saturday — Active Recovery</div>
+      <label class="check-item"><input type="checkbox"> <label>Ab vacuum — 3 rounds</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Morning sunlight — 10–20 min</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Zone 2 fasted — 35–45 min</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Mobility circuit — 15 min</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Farmer's walk finisher — 3×40m</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Sauna — 15–25 min</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Grounding — feet on earth</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Blue light glasses after sunset</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Meditation</label></label>
+    </div>
+
+    <div class="check-day">
+      <div class="check-day-name rest-day">Sunday — Full Rest</div>
+      <label class="check-item"><input type="checkbox"> <label>Ab vacuum — 3 rounds</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Morning sunlight — 10–20 min</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Meal prep for the week</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Review last week's weigh-in data</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Adjust calories if needed (stalled or dropping too fast)</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Light walk or grounding</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Blue light glasses after sunset</label></label>
+      <label class="check-item"><input type="checkbox"> <label>Meditation</label></label>
+    </div>
+
+  </div>
+</div>
+
+<!-- TARGETS -->
+<div class="section" id="targets">
+  <div class="section-header">
+    <span class="section-tag">30-Day Outcomes</span>
+    <h2>What You're Building Toward</h2>
+  </div>
+
+  <div class="target-grid">
+    <div class="target-card">
+      <div class="target-area">Body Fat</div>
+      <div class="target-goal"><span class="target-arrow">↓</span>Drop 4–6 lbs actual fat + fluid. 13.3% moving toward 10–11%.</div>
+    </div>
+    <div class="target-card">
+      <div class="target-area">Trunk Fat (118.1%)</div>
+      <div class="target-goal"><span class="target-arrow">↓</span>Begin visibly reducing. This is the #1 aesthetic priority. Vacuums + deficit + Zone 2 attack it daily.</div>
+    </div>
+    <div class="target-card">
+      <div class="target-area">Glutes</div>
+      <div class="target-goal"><span class="target-arrow">↑</span>Neural activation improving week over week. Hip thrusts, RDL, both split squat variations hitting glutes 4x per week.</div>
+    </div>
+    <div class="target-card">
+      <div class="target-area">Traps</div>
+      <div class="target-goal"><span class="target-arrow">↑</span>Initial hypertrophy stimulus from rack pulls and farmer's walks. Visible change beginning by week 3–4.</div>
+    </div>
+    <div class="target-card">
+      <div class="target-area">Midsection</div>
+      <div class="target-goal"><span class="target-arrow">↑</span>Core strength and tilt correction underway. Barbell ab crunch 2x/week builds density. Vacuums daily cinch the waist.</div>
+    </div>
+    <div class="target-card">
+      <div class="target-area">Legs</div>
+      <div class="target-goal"><span class="target-arrow">↑</span>Leg press at 15–20 reps with progressive overload. Both quad and hamstring sessions per week. InBody leg % climbing.</div>
+    </div>
+    <div class="target-card">
+      <div class="target-area">ECW Ratio (0.382)</div>
+      <div class="target-goal"><span class="target-arrow">↓</span>Target 0.370 range as inflammation drops. Driven by diet, sauna, grounding, sleep, and stress management.</div>
+    </div>
+    <div class="target-card">
+      <div class="target-area">Habits</div>
+      <div class="target-goal"><span class="target-arrow">✓</span>Training, fasting window, weekly check-in, Zone 2, and vacuums fully locked in and automatic by day 30.</div>
+    </div>
+  </div>
+
+  <div class="infobox" style="margin-top: 24px;">
+    <strong>The honest timeline:</strong> 30 days builds the foundation, not the physique. The physique comes over 12–24 months of stacking phases. But if you execute this phase cleanly, the next InBody scan — trunk fat down, ECW ratio moving, glutes and legs responding, habits solid — sets up everything that follows. <strong>Don't fix what isn't broken. Just do the do.</strong>
+  </div>
+</div>
+
+<footer>CHRIS ALE · PHASE 1 · 30-DAY FOUNDATION PROTOCOL · NUBLUME LLC</footer>
+
+<script>
+  // Checkbox interaction
+  document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', function() {
+      const item = this.closest('.check-item');
+      if (this.checked) {
+        item.classList.add('done');
+      } else {
+        item.classList.remove('done');
+      }
+    });
+  });
+
+  // Highlight active nav link on scroll
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.style.color = link.getAttribute('href') === '#' + id
+            ? 'var(--accent)'
+            : '';
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

@@ -15,20 +15,25 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
 
   :root {
-    --black: #0e0e0e;
-    --surface: #161616;
-    --card: #1e1e1e;
+    --black: #0a0a0a;
+    --surface: #141414;
+    --card: #1a1a1a;
     --border: #2a2a2a;
     --accent: #c8f54a;
-    --accent-dim: rgba(200,245,74,0.12);
-    --accent-mid: rgba(200,245,74,0.06);
+    --accent-2: #9fe62c;
+    --accent-dim: rgba(200,245,74,0.14);
+    --accent-mid: rgba(200,245,74,0.07);
+    --accent-glow: rgba(200,245,74,0.45);
+    --accent-glow-soft: rgba(200,245,74,0.18);
     --blue: #4a9ef5;
-    --text: #e8e8e8;
-    --muted: #888;
+    --amber: #f5a623;
+    --text: #f2f2f2;
+    --muted: #8a8a8a;
     --faint: #444;
   }
 
@@ -37,7 +42,12 @@
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--black);
+    background:
+      radial-gradient(ellipse 900px 500px at 15% 0%, rgba(200,245,74,0.08), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 20%, rgba(200,245,74,0.05), transparent 55%),
+      repeating-linear-gradient(0deg, rgba(200,245,74,0.025) 0px, rgba(200,245,74,0.025) 1px, transparent 1px, transparent 64px),
+      repeating-linear-gradient(90deg, rgba(200,245,74,0.025) 0px, rgba(200,245,74,0.025) 1px, transparent 1px, transparent 64px),
+      var(--black);
     color: var(--text);
     font-family: 'Inter', sans-serif;
     font-size: 15px;
@@ -54,9 +64,10 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(14,14,14,0.95);
-    backdrop-filter: blur(12px);
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 0 rgba(200,245,74,0.08);
     display: flex;
     align-items: center;
     padding: 0 24px;
@@ -75,40 +86,86 @@
     margin-right: 8px;
     white-space: nowrap;
     flex-shrink: 0;
+    text-shadow: 0 0 18px var(--accent-glow-soft);
   }
 
   nav a {
+    position: relative;
     color: var(--muted);
     text-decoration: none;
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    padding: 18px 16px;
+    padding: 18px 14px;
     white-space: nowrap;
     transition: color 0.2s;
     flex-shrink: 0;
   }
+  nav a::after {
+    content: '';
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 0;
+    height: 2px;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+    transform: scaleX(0);
+    transition: transform 0.2s;
+  }
   nav a:hover { color: var(--accent); }
+  nav a:hover::after { transform: scaleX(1); }
 
   /* ── HERO ── */
   .hero {
+    position: relative;
     padding: 64px 24px 48px;
     max-width: 960px;
     margin: 0 auto;
     border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -180px;
+    left: -120px;
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, var(--accent-glow-soft) 0%, transparent 70%);
+    filter: blur(20px);
+    pointer-events: none;
+    z-index: 0;
   }
 
   .hero-eyebrow {
+    position: relative;
+    z-index: 1;
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     color: var(--accent);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     margin-bottom: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-glow), 0 0 16px var(--accent-glow);
   }
 
   .hero h1 {
+    position: relative;
+    z-index: 1;
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(52px, 10vw, 96px);
     line-height: 0.92;
@@ -117,9 +174,14 @@
     margin-bottom: 24px;
   }
 
-  .hero h1 span { color: var(--accent); }
+  .hero h1 span {
+    color: var(--accent);
+    text-shadow: 0 0 30px var(--accent-glow-soft), 0 0 60px rgba(200,245,74,0.15);
+  }
 
   .hero-sub {
+    position: relative;
+    z-index: 1;
     font-size: 14px;
     color: var(--muted);
     max-width: 620px;
@@ -127,6 +189,8 @@
   }
 
   .hero-badges {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
@@ -138,7 +202,7 @@
     font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 6px 12px;
+    padding: 7px 13px;
     border: 1px solid var(--border);
     color: var(--muted);
     background: var(--surface);
@@ -146,37 +210,9 @@
 
   .badge.hot {
     color: var(--accent);
-    border-color: rgba(200,245,74,0.3);
+    border-color: rgba(200,245,74,0.4);
     background: var(--accent-dim);
-  }
-
-  /* ── SECTION HEADER BANNER ── */
-  .section-banner {
-    background: var(--accent);
-    padding: 20px 24px;
-  }
-
-  .section-banner-inner {
-    max-width: 960px;
-    margin: 0 auto;
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-  }
-
-  .section-banner-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 42px;
-    color: var(--black);
-    line-height: 1;
-  }
-
-  .section-banner-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 30px;
-    letter-spacing: 2px;
-    color: var(--black);
-    line-height: 1;
+    box-shadow: 0 0 16px var(--accent-glow-soft), inset 0 0 12px rgba(200,245,74,0.06);
   }
 
   /* ── SECTIONS ── */
@@ -199,12 +235,17 @@
     font-size: 10px;
     color: var(--accent);
     background: var(--accent-dim);
-    padding: 3px 8px;
+    padding: 4px 10px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     border-radius: 2px;
+    border: 1px solid rgba(200,245,74,0.25);
+    box-shadow: 0 0 14px var(--accent-glow-soft);
     flex-shrink: 0;
   }
+
+  .section-tag.blue { color: var(--blue); background: rgba(74,158,245,0.12); border-color: rgba(74,158,245,0.3); box-shadow: 0 0 14px rgba(74,158,245,0.18); }
+  .section-tag.amber { color: var(--amber); background: rgba(245,166,35,0.12); border-color: rgba(245,166,35,0.3); box-shadow: 0 0 14px rgba(245,166,35,0.18); }
 
   .section h2 {
     font-family: 'Bebas Neue', sans-serif;
@@ -212,14 +253,140 @@
     letter-spacing: 1px;
     color: var(--text);
     line-height: 1;
+    position: relative;
+  }
+
+  /* ── DAILY NON-NEGOTIABLE CARD ── */
+  .daily-card {
+    background: linear-gradient(135deg, var(--accent-dim), var(--accent-mid));
+    border: 1px solid rgba(200,245,74,0.35);
+    box-shadow: 0 0 40px var(--accent-glow-soft), inset 0 1px 0 rgba(200,245,74,0.15);
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .daily-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .daily-icon {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--black);
+    background: var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow);
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .daily-item-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  .daily-item-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* ── WEEK STRIP ── */
+  .week-strip {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 700px) {
+    .week-strip { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 420px) {
+    .week-strip { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .week-day {
+    position: relative;
+    background: var(--surface);
+    padding: 18px 12px 16px;
+    cursor: pointer;
+    transition: background 0.15s, box-shadow 0.15s;
+    border-top: 2px solid var(--accent);
+    box-shadow: inset 0 12px 20px -14px var(--accent-glow-soft);
+  }
+
+  .week-day:hover {
+    background: var(--card);
+    box-shadow: inset 0 12px 24px -12px var(--accent-glow-soft), 0 0 24px rgba(200,245,74,0.1);
+  }
+
+  .week-day.rest-day {
+    border-top-color: var(--blue);
+    box-shadow: inset 0 12px 20px -14px rgba(74,158,245,0.16);
+    opacity: 0.85;
+  }
+
+  .week-day.rest-day:hover {
+    box-shadow: inset 0 12px 24px -12px rgba(74,158,245,0.16), 0 0 24px rgba(74,158,245,0.08);
+  }
+
+  .week-day-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+
+  .week-day.rest-day .week-day-num { color: var(--blue); }
+
+  .week-day-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 17px;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  .week-day-focus {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.4;
   }
 
   /* ── SESSION CARD ── */
   .session-card {
+    position: relative;
     background: var(--card);
     border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    box-shadow: -4px 0 20px -8px var(--accent-glow-soft);
     padding: 28px 24px;
     margin-bottom: 4px;
+    overflow: hidden;
+  }
+
+  .session-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent 70%);
   }
 
   .session-focus {
@@ -249,17 +416,26 @@
   .ex-table td {
     padding: 12px 0;
     border-bottom: 1px solid rgba(42,42,42,0.5);
-    vertical-align: top;
+    vertical-align: middle;
   }
+
+  .ex-table td:first-child { vertical-align: top; padding-top: 14px; }
 
   .ex-table tr:last-child td { border-bottom: none; }
 
   .ex-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    color: var(--faint);
-    padding-right: 14px !important;
-    width: 30px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid rgba(200,245,74,0.3);
+    box-shadow: 0 0 10px var(--accent-glow-soft);
+    padding-right: 0 !important;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
   }
 
   .ex-name {
@@ -273,14 +449,15 @@
 
   .jack-dot {
     display: inline-block;
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     background: var(--accent);
     border-radius: 50%;
-    margin-right: 5px;
+    margin-right: 6px;
     vertical-align: middle;
     position: relative;
     top: -1px;
+    box-shadow: 0 0 8px var(--accent-glow), 0 0 14px var(--accent-glow);
   }
 
   .ex-sub {
@@ -305,6 +482,180 @@
     font-weight: 500;
   }
 
+  /* ── RECOVERY DAY TABLE ── */
+  .recovery-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .recovery-table td {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(42,42,42,0.5);
+    vertical-align: middle;
+  }
+
+  .recovery-table td:first-child { vertical-align: top; padding-top: 16px; }
+
+  .recovery-table tr:last-child td { border-bottom: none; }
+
+  .recovery-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    color: var(--blue);
+    background: rgba(74,158,245,0.14);
+    border: 1px solid rgba(74,158,245,0.3);
+    box-shadow: 0 0 10px rgba(74,158,245,0.18);
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    border-radius: 50%;
+    padding-right: 0 !important;
+  }
+
+  .recovery-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .recovery-vol {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text);
+    white-space: nowrap;
+    padding-right: 16px !important;
+  }
+
+  .recovery-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  /* ── SUNDAY RESET CARD ── */
+  .reset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .reset-card {
+    background: var(--card);
+    border-top: 2px solid var(--blue);
+    padding: 22px 20px;
+    transition: box-shadow 0.15s;
+  }
+
+  .reset-card:hover {
+    box-shadow: 0 0 24px rgba(74,158,245,0.1);
+  }
+
+  .reset-icon {
+    font-size: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(74,158,245,0.12);
+    box-shadow: 0 0 16px rgba(74,158,245,0.15);
+    margin-bottom: 12px;
+  }
+
+  .reset-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .reset-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .reset-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── MOBILITY TIMELINE ── */
+  .mobility-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .mobility-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--blue);
+    box-shadow: -4px 0 16px -10px rgba(74,158,245,0.25);
+    padding: 18px 22px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+
+  .mobility-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    color: var(--blue);
+    background: rgba(74,158,245,0.14);
+    border: 1px solid rgba(74,158,245,0.3);
+    box-shadow: 0 0 10px rgba(74,158,245,0.18);
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobility-content { flex: 1; }
+
+  .mobility-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .mobility-vol {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .mobility-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .mobility-priority {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow-soft);
+    padding: 3px 9px;
+    margin-top: 8px;
+  }
+
   /* ── COVERAGE GRID ── */
   .coverage-grid {
     display: grid;
@@ -316,7 +667,13 @@
 
   .coverage-card {
     background: var(--card);
+    border-top: 2px solid var(--accent);
     padding: 18px 20px;
+    transition: box-shadow 0.15s;
+  }
+
+  .coverage-card:hover {
+    box-shadow: 0 0 24px var(--accent-glow-soft);
   }
 
   .coverage-num {
@@ -325,6 +682,7 @@
     color: var(--accent);
     line-height: 1;
     margin-bottom: 4px;
+    text-shadow: 0 0 12px var(--accent-glow-soft);
   }
 
   .coverage-name {
@@ -340,11 +698,32 @@
     line-height: 1.5;
   }
 
+  .week-dots {
+    display: flex;
+    gap: 5px;
+    margin-top: 12px;
+  }
+
+  .week-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  .week-dots span.active {
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+  }
+
   /* ── RULES ── */
   .rule-card {
+    position: relative;
     background: var(--card);
     border: 1px solid var(--border);
     border-left: 3px solid var(--accent);
+    box-shadow: -4px 0 18px -10px var(--accent-glow-soft);
     padding: 20px 24px;
     margin-bottom: 8px;
   }
@@ -355,6 +734,7 @@
     letter-spacing: 0.5px;
     color: var(--accent);
     margin-bottom: 6px;
+    text-shadow: 0 0 10px var(--accent-glow-soft);
   }
 
   .rule-body {
@@ -369,6 +749,7 @@
   .infobox {
     background: var(--surface);
     border-left: 3px solid var(--accent);
+    box-shadow: -4px 0 16px -10px var(--accent-glow-soft);
     padding: 14px 18px;
     margin: 16px 0;
     font-size: 13px;
@@ -378,58 +759,28 @@
 
   .infobox strong { color: var(--text); }
 
-  /* ── WEEK GRID ── */
-  .week-strip {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    margin-bottom: 32px;
-  }
-
-  @media (max-width: 600px) {
-    .week-strip { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  .week-day {
-    background: var(--surface);
-    padding: 18px 16px;
-    cursor: pointer;
-    transition: background 0.15s;
-  }
-
-  .week-day:hover { background: var(--card); }
-
-  .week-day-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    margin-bottom: 6px;
-  }
-
-  .week-day-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    letter-spacing: 0.5px;
-    color: var(--text);
-    line-height: 1.1;
-  }
-
-  .week-day-focus {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 4px;
-  }
+  .infobox.blue { border-left-color: var(--blue); box-shadow: -4px 0 16px -10px rgba(74,158,245,0.2); }
 
   footer {
+    position: relative;
     text-align: center;
-    padding: 40px 24px;
+    padding: 48px 24px 40px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     color: var(--faint);
     letter-spacing: 0.1em;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    box-shadow: 0 0 16px var(--accent-glow);
   }
 </style>
 </head>
@@ -438,10 +789,15 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">CHRIS / V4</div>
-  <a href="#day1">Push</a>
-  <a href="#day2">Pull</a>
-  <a href="#day3">Legs · Glutes</a>
-  <a href="#day4">Posture · Arms</a>
+  <a href="#daily">Daily</a>
+  <a href="#monday">Mon</a>
+  <a href="#tuesday">Tue</a>
+  <a href="#wednesday">Wed</a>
+  <a href="#thursday">Thu</a>
+  <a href="#friday">Fri</a>
+  <a href="#saturday">Sat</a>
+  <a href="#sunday">Sun</a>
+  <a href="#mobility">Mobility</a>
   <a href="#coverage">Coverage</a>
   <a href="#rules">Rules</a>
 </nav>
@@ -451,64 +807,100 @@
   <div class="hero-eyebrow">V4 · Lean Bulk Phase · Masculine Physique Protocol</div>
   <h1>BUILD THE<br><span>ARCHETYPE</span></h1>
   <div class="hero-sub">
-    Four precise sessions per week. Every one of the 7 masculine physique muscle groups covered. All 10 priority exercises placed. Glute specialization and posture correction embedded. Low volume, brutal effort, relentless progression — the surplus does the building.
+    Seven days, fully mapped. Every lift properly spaced with recovery in between. Daily non-negotiables that never move. A dedicated mobility protocol for the lower back, neck, and hips that heavy pulling and desk time chew up. Nothing crammed, nothing skipped.
   </div>
   <div class="hero-badges">
-    <span class="badge hot">4 Days / Week</span>
-    <span class="badge hot">45–55 Min Sessions</span>
-    <span class="badge">Push · Pull · Legs · Details</span>
+    <span class="badge hot">4 Lift Days</span>
+    <span class="badge hot">2 Recovery Days</span>
+    <span class="badge hot">1 Full Reset Day</span>
+    <span class="badge">Daily Vacuums + Walk</span>
     <span class="badge">Double Progression</span>
-    <span class="badge">1–2 Reps From Failure</span>
   </div>
 </div>
 
-<!-- SECTION 1 BANNER -->
-<div class="section-banner" id="section1">
-  <div class="section-banner-inner">
-    <span class="section-banner-num">01</span>
-    <span class="section-banner-title">THE WORKOUT PROGRAM</span>
-  </div>
-</div>
-
-<!-- WEEK OVERVIEW -->
-<div class="section">
+<!-- DAILY NON-NEGOTIABLES -->
+<div class="section" id="daily">
   <div class="section-header">
-    <span class="section-tag">Weekly Structure</span>
-    <h2>The Split</h2>
+    <span class="section-tag">Every Single Day</span>
+    <h2>Daily Non-Negotiables</h2>
   </div>
 
-  <div class="week-strip">
-    <div class="week-day" onclick="location.href='#day1'">
-      <div class="week-day-num">DAY 01</div>
-      <div class="week-day-name">PUSH</div>
-      <div class="week-day-focus">Chest · Shoulders · Triceps · Abs</div>
+  <div class="daily-card">
+    <div class="daily-item">
+      <div class="daily-icon">01</div>
+      <div>
+        <div class="daily-item-title">Ab Vacuums</div>
+        <div class="daily-item-sub">3 rounds, fasted, first thing</div>
+      </div>
     </div>
-    <div class="week-day" onclick="location.href='#day2'">
-      <div class="week-day-num">DAY 02</div>
-      <div class="week-day-name">PULL</div>
-      <div class="week-day-focus">Traps · Upper Back · Biceps · Neck</div>
-    </div>
-    <div class="week-day" onclick="location.href='#day3'">
-      <div class="week-day-num">DAY 03</div>
-      <div class="week-day-name">LEGS &amp; GLUTES</div>
-      <div class="week-day-focus">Glute Spec · Quads · Hams · Calves</div>
-    </div>
-    <div class="week-day" onclick="location.href='#day4'">
-      <div class="week-day-num">DAY 04</div>
-      <div class="week-day-name">POSTURE &amp; DETAILS</div>
-      <div class="week-day-focus">Upper Back · Arms · Forearms · Calves</div>
+    <div class="daily-item">
+      <div class="daily-icon">02</div>
+      <div>
+        <div class="daily-item-title">Morning Walk</div>
+        <div class="daily-item-sub">20 minutes, fasted</div>
+      </div>
     </div>
   </div>
 
   <div class="infobox">
-    <strong>Scheduling:</strong> Place the 4 sessions on any days that fit your week with at least one rest day between Day 3 (Legs) and Day 4 (which opens with split squats). A clean default: Mon Push · Tue Pull · Thu Legs &amp; Glutes · Fri or Sat Posture &amp; Details.
+    These two sit above the entire week — they happen regardless of what training day it is, lift day or recovery day or Sunday reset. Non-negotiable means non-negotiable.
   </div>
 </div>
 
-<!-- DAY 1 PUSH -->
-<div class="section" id="day1">
+<!-- WEEK OVERVIEW -->
+<div class="section" id="week">
   <div class="section-header">
-    <span class="section-tag">Day 01</span>
+    <span class="section-tag">Weekly Structure</span>
+    <h2>The Full Week</h2>
+  </div>
+
+  <div class="week-strip">
+    <div class="week-day" onclick="location.href='#monday'">
+      <div class="week-day-num">MON</div>
+      <div class="week-day-name">PUSH</div>
+      <div class="week-day-focus">Chest · Shoulders · Tri · Abs</div>
+    </div>
+    <div class="week-day rest-day" onclick="location.href='#tuesday'">
+      <div class="week-day-num">TUE</div>
+      <div class="week-day-name">LISS</div>
+      <div class="week-day-focus">Zone 2 · Core · Mobility</div>
+    </div>
+    <div class="week-day" onclick="location.href='#wednesday'">
+      <div class="week-day-num">WED</div>
+      <div class="week-day-name">PULL</div>
+      <div class="week-day-focus">Traps · Back · Bi · Neck</div>
+    </div>
+    <div class="week-day rest-day" onclick="location.href='#thursday'">
+      <div class="week-day-num">THU</div>
+      <div class="week-day-name">HIIT</div>
+      <div class="week-day-focus">Intervals · Neck · Mobility</div>
+    </div>
+    <div class="week-day" onclick="location.href='#friday'">
+      <div class="week-day-num">FRI</div>
+      <div class="week-day-name">LEGS</div>
+      <div class="week-day-focus">Glute Spec · Quads · Hams</div>
+    </div>
+    <div class="week-day" onclick="location.href='#saturday'">
+      <div class="week-day-num">SAT</div>
+      <div class="week-day-name">DETAILS</div>
+      <div class="week-day-focus">Posture · Arms · Calves</div>
+    </div>
+    <div class="week-day rest-day" onclick="location.href='#sunday'">
+      <div class="week-day-num">SUN</div>
+      <div class="week-day-name">RESET</div>
+      <div class="week-day-focus">Sun · Water · Zero Tracking</div>
+    </div>
+  </div>
+
+  <div class="infobox">
+    <strong>The spacing logic:</strong> Push (Mon) → Pull (Wed) → Legs (Fri) never sit back-to-back. Every lift gets 48 hours before the next one. Tuesday and Thursday aren't rest — they're active recovery with a job to do. Sunday is the only true zero-input day.
+  </div>
+</div>
+
+<!-- MONDAY PUSH -->
+<div class="section" id="monday">
+  <div class="section-header">
+    <span class="section-tag">Monday</span>
     <h2>Push — Chest, Shoulders, Triceps</h2>
   </div>
 
@@ -558,7 +950,7 @@
         </tr>
         <tr>
           <td class="ex-num">7</td>
-          <td><span class="jack-dot"></span><span class="ex-name jack">Barbell Ab Crunch</span><div class="ex-sub">Loaded midsection work. Full contraction, slow 2 sec eccentric.</div></td>
+          <td><span class="jack-dot"></span><span class="ex-name jack">Barbell Ab Crunch</span><div class="ex-sub">Loaded midsection work. Full contraction, slow 2 sec eccentric. Ab hit #1 of 3 this week — upper ab focus.</div></td>
           <td class="ex-sets">3×12–15</td>
           <td class="ex-rest">50 sec</td>
         </tr>
@@ -567,10 +959,59 @@
   </div>
 </div>
 
-<!-- DAY 2 PULL -->
-<div class="section" id="day2">
+<!-- TUESDAY LISS -->
+<div class="section" id="tuesday">
   <div class="section-header">
-    <span class="section-tag">Day 02</span>
+    <span class="section-tag blue">Tuesday</span>
+    <h2>LISS, Abs &amp; Mobility</h2>
+  </div>
+
+  <div class="session-card">
+    <div class="session-focus">Active recovery from Monday's push session. Zone 2 for aerobic base and blood flow, a second ab angle to build the lower abs and full ROM flexion, then mobility work.</div>
+
+    <table class="recovery-table">
+      <tbody>
+        <tr>
+          <td class="recovery-num">1</td>
+          <td>
+            <div class="recovery-name">Zone 2 / LISS Cardio</div>
+            <div class="recovery-note">Conversational pace, 130–140 BPM. If you can't hold a sentence, slow down.</div>
+          </td>
+          <td class="recovery-vol">30–40 min</td>
+        </tr>
+        <tr>
+          <td class="recovery-num">2</td>
+          <td>
+            <div class="recovery-name">Elevated Core Work</div>
+            <div class="recovery-note">Feet elevated crunch or reverse crunch variation. Lower ab focus — different angle than Monday's barbell crunch. Ab hit #2 of 3.</div>
+          </td>
+          <td class="recovery-vol">3×12–15</td>
+        </tr>
+        <tr>
+          <td class="recovery-num">3</td>
+          <td>
+            <div class="recovery-name">Weighted Sit-Ups</div>
+            <div class="recovery-note">Plate held at chest, full range of motion sit-up. Complements the elevated core work with full flexion.</div>
+          </td>
+          <td class="recovery-vol">3×12–15</td>
+        </tr>
+        <tr>
+          <td class="recovery-num">4</td>
+          <td>
+            <div class="recovery-name">Mobility Circuit</div>
+            <div class="recovery-note">See the full Premium Mobility Protocol below.</div>
+          </td>
+          <td class="recovery-vol">12–15 min</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- WEDNESDAY PULL -->
+<div class="section" id="wednesday">
+  <div class="section-header">
+    <span class="section-tag">Wednesday</span>
     <h2>Pull — Traps, Upper Back, Biceps, Neck</h2>
   </div>
 
@@ -612,21 +1053,56 @@
           <td class="ex-sets">3×12–15</td>
           <td class="ex-rest">45 sec</td>
         </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- THURSDAY HIIT -->
+<div class="section" id="thursday">
+  <div class="section-header">
+    <span class="section-tag blue">Thursday</span>
+    <h2>HIIT, Neck &amp; Mobility</h2>
+  </div>
+
+  <div class="session-card">
+    <div class="session-focus">Short, sharp conditioning between Pull and Legs. Neck gets an unloaded mobility pass to balance Wednesday's loaded curl. Mobility circuit repeats.</div>
+
+    <table class="recovery-table">
+      <tbody>
         <tr>
-          <td class="ex-num">6</td>
-          <td><span class="ex-name">Hanging Leg Raise</span><div class="ex-sub">Lower abs. Knees to chest, full extension at bottom, zero kipping.</div></td>
-          <td class="ex-sets">3×12–15</td>
-          <td class="ex-rest">50 sec</td>
+          <td class="recovery-num">1</td>
+          <td>
+            <div class="recovery-name">HIIT</div>
+            <div class="recovery-note">Sled push, bike sprints, or incline treadmill intervals. Short and hard — not a long cardio session.</div>
+          </td>
+          <td class="recovery-vol">10–15 min</td>
+        </tr>
+        <tr>
+          <td class="recovery-num">2</td>
+          <td>
+            <div class="recovery-name">Neck Mobility</div>
+            <div class="recovery-note">Unloaded — rotations, flexion/extension stretching. Not the plate neck curl. Recovery, not loading.</div>
+          </td>
+          <td class="recovery-vol">5–10 min</td>
+        </tr>
+        <tr>
+          <td class="recovery-num">3</td>
+          <td>
+            <div class="recovery-name">Mobility Circuit</div>
+            <div class="recovery-note">Same as Tuesday — see the full Premium Mobility Protocol below.</div>
+          </td>
+          <td class="recovery-vol">12–15 min</td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<!-- DAY 3 LEGS & GLUTES -->
-<div class="section" id="day3">
+<!-- FRIDAY LEGS -->
+<div class="section" id="friday">
   <div class="section-header">
-    <span class="section-tag">Day 03</span>
+    <span class="section-tag">Friday</span>
     <h2>Legs &amp; Glutes — Glute Spec, Quads, Hams, Calves</h2>
   </div>
 
@@ -679,10 +1155,10 @@
   </div>
 </div>
 
-<!-- DAY 4 POSTURE ARMS DETAILS -->
-<div class="section" id="day4">
+<!-- SATURDAY DETAILS -->
+<div class="section" id="saturday">
   <div class="section-header">
-    <span class="section-tag">Day 04</span>
+    <span class="section-tag">Saturday</span>
     <h2>Posture, Arms &amp; Details</h2>
   </div>
 
@@ -702,7 +1178,7 @@
         </tr>
         <tr>
           <td class="ex-num">2</td>
-          <td><span class="jack-dot"></span><span class="ex-name jack">Rack Pull — Posture Focus</span><div class="ex-sub">Lighter than Day 2. Strict scapular retraction at the top of every rep — this is posture work under load.</div></td>
+          <td><span class="jack-dot"></span><span class="ex-name jack">Rack Pull — Posture Focus</span><div class="ex-sub">Lighter than Wednesday. Strict scapular retraction at the top of every rep — this is posture work under load.</div></td>
           <td class="ex-sets">2×12–15</td>
           <td class="ex-rest">75 sec</td>
         </tr>
@@ -714,7 +1190,7 @@
         </tr>
         <tr>
           <td class="ex-num">4</td>
-          <td><span class="ex-name">One Arm Cable Preacher Curl</span><div class="ex-sub">Second weekly bicep hit. Same strict standard as Day 2.</div></td>
+          <td><span class="ex-name">One Arm Cable Preacher Curl</span><div class="ex-sub">Second weekly bicep hit. Same strict standard as Wednesday.</div></td>
           <td class="ex-sets">2×10–15</td>
           <td class="ex-rest">45 sec</td>
         </tr>
@@ -732,12 +1208,159 @@
         </tr>
         <tr>
           <td class="ex-num">7</td>
+          <td><span class="ex-name">Hanging Leg Raise</span><div class="ex-sub">Full ROM — knees to chest, no kipping. Ab hit #3 of 3 — lower ab and hip flexor finish for the week.</div></td>
+          <td class="ex-sets">3×12–15</td>
+          <td class="ex-rest">50 sec</td>
+        </tr>
+        <tr>
+          <td class="ex-num">8</td>
           <td><span class="jack-dot"></span><span class="ex-name jack">Farmer's Walk — Finisher</span><div class="ex-sub">Heavy DBs, chest tall, shoulders packed. Traps, grip, core, conditioning — the masculine physique finisher.</div></td>
           <td class="ex-sets">3×40m</td>
           <td class="ex-rest">60 sec</td>
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<!-- SUNDAY RESET -->
+<div class="section" id="sunday">
+  <div class="section-header">
+    <span class="section-tag blue">Sunday</span>
+    <h2>Full Reset</h2>
+  </div>
+
+  <div class="infobox blue">
+    No structured training. No tracking of any kind — no calories, no reps, no sets. The only jobs today: sun, water, ground, and rest. This is the day your nervous system actually recovers from a demanding week of training plus running the businesses plus trading.
+  </div>
+
+  <div class="reset-grid">
+    <div class="reset-card">
+      <span class="reset-icon">☀️</span>
+      <div class="reset-title">Morning Sun</div>
+      <div class="reset-time">15–20 min</div>
+      <div class="reset-desc">No sunglasses. Same protocol as every other day, just with nowhere to be after.</div>
+    </div>
+    <div class="reset-card">
+      <span class="reset-icon">🦶</span>
+      <div class="reset-title">Grounding</div>
+      <div class="reset-time">10–15 min</div>
+      <div class="reset-desc">Barefoot on grass or a pool deck. Let the nervous system downshift.</div>
+    </div>
+    <div class="reset-card">
+      <span class="reset-icon">🌊</span>
+      <div class="reset-title">Pool / Casual Walk</div>
+      <div class="reset-time">Open — no agenda</div>
+      <div class="reset-desc">Canal path, a resort pool, anywhere with water. The Scottsdale stand-in for Jack's beach day.</div>
+    </div>
+    <div class="reset-card">
+      <span class="reset-icon">🚫</span>
+      <div class="reset-title">Zero Tracking</div>
+      <div class="reset-time">All day</div>
+      <div class="reset-desc">No macros, no logging, no numbers. One day a week where nothing is measured.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PREMIUM MOBILITY PROTOCOL -->
+<div class="section" id="mobility">
+  <div class="section-header">
+    <span class="section-tag blue">Tuesday + Thursday · 12–15 min</span>
+    <h2>Premium Mobility Protocol</h2>
+  </div>
+
+  <div class="infobox blue">
+    Built for the exact zones heavy rack pulls and screen time chew up: lower back, neck, hips, thoracic spine. Sequence runs <strong>dynamic → static</strong>, spine → hips → neck → down-regulation. Run the full thing Tuesday and Thursday, or as a standalone reset any evening.
+  </div>
+
+  <div class="mobility-list">
+    <div class="mobility-item">
+      <div class="mobility-num">01</div>
+      <div class="mobility-content">
+        <div class="mobility-name">Cat-Cow Flow</div>
+        <div class="mobility-vol">3×10 slow reps</div>
+        <div class="mobility-desc">Segmental spinal movement — decompresses the lower back and wakes up the whole spine before anything else.</div>
+      </div>
+    </div>
+    <div class="mobility-item">
+      <div class="mobility-num">02</div>
+      <div class="mobility-content">
+        <div class="mobility-name">World's Greatest Stretch</div>
+        <div class="mobility-vol">2×5 each side · 3 sec hold each position</div>
+        <div class="mobility-desc">Hip flexor + t-spine rotation + hamstring in one flow. Covers more ground than almost anything else on this list.</div>
+      </div>
+    </div>
+    <div class="mobility-item">
+      <div class="mobility-num">03</div>
+      <div class="mobility-content">
+        <div class="mobility-name">90/90 Hip Switch</div>
+        <div class="mobility-vol">2×8 each side</div>
+        <div class="mobility-desc">Hip internal/external rotation. Directly supports glute activation and counters anterior pelvic tilt.</div>
+        <span class="mobility-priority">Priority if short on time</span>
+      </div>
+    </div>
+    <div class="mobility-item">
+      <div class="mobility-num">04</div>
+      <div class="mobility-content">
+        <div class="mobility-name">Child's Pose to Cobra</div>
+        <div class="mobility-vol">2×8 slow reps · 2 sec pause each position</div>
+        <div class="mobility-desc">Lower back decompression paired with gentle spinal extension. Undoes compression from rack pulls and hip thrusts.</div>
+      </div>
+    </div>
+    <div class="mobility-item">
+      <div class="mobility-num">05</div>
+      <div class="mobility-content">
+        <div class="mobility-name">Thread the Needle</div>
+        <div class="mobility-vol">2×6 each side · 3 sec hold</div>
+        <div class="mobility-desc">Thoracic rotation. Opens the upper back and takes pressure off the neck — critical for screen-heavy days.</div>
+        <span class="mobility-priority">Priority if short on time</span>
+      </div>
+    </div>
+    <div class="mobility-item">
+      <div class="mobility-num">06</div>
+      <div class="mobility-content">
+        <div class="mobility-name">Neck CARs</div>
+        <div class="mobility-vol">2×5 slow circles each direction</div>
+        <div class="mobility-desc">Controlled Articular Rotations — full range through flexion, extension, rotation. Active control, not passive stretching. What actually protects the neck long term.</div>
+      </div>
+    </div>
+    <div class="mobility-item">
+      <div class="mobility-num">07</div>
+      <div class="mobility-content">
+        <div class="mobility-name">Standing Forward Fold with Sway</div>
+        <div class="mobility-vol">1×45–60 sec · gentle side-to-side sway</div>
+        <div class="mobility-desc">Passive hamstring and lower back release. Let gravity do the work — no forcing it.</div>
+      </div>
+    </div>
+    <div class="mobility-item">
+      <div class="mobility-num">08</div>
+      <div class="mobility-content">
+        <div class="mobility-name">90-Degree Wall Hip Flexor Stretch</div>
+        <div class="mobility-vol">2×30 sec each side</div>
+        <div class="mobility-desc">Direct anterior pelvic tilt correction. Back foot elevated against a wall or bench, hips pressed forward.</div>
+        <span class="mobility-priority">Priority if short on time</span>
+      </div>
+    </div>
+    <div class="mobility-item">
+      <div class="mobility-num">09</div>
+      <div class="mobility-content">
+        <div class="mobility-name">Supine Figure-4 Stretch</div>
+        <div class="mobility-vol">2×30 sec each side</div>
+        <div class="mobility-desc">Piriformis and deep glute release — often the hidden contributor to lower back tightness that stretching the back alone won't fix.</div>
+      </div>
+    </div>
+    <div class="mobility-item">
+      <div class="mobility-num">10</div>
+      <div class="mobility-content">
+        <div class="mobility-name">Deep Breathing Reset</div>
+        <div class="mobility-vol">1×2 min · lying on back, knees bent</div>
+        <div class="mobility-desc">Diaphragmatic breathing — 4 sec in, 6 sec out. Down-regulates the nervous system and lets everything you just mobilized settle in.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="infobox" style="margin-top: 20px;">
+    <strong>Short on time?</strong> Moves 03, 05, and 08 alone cover your biggest structural weak points — anterior pelvic tilt, internally rotated shoulders, hip tightness from rack pulls — in under 5 minutes.
   </div>
 </div>
 
@@ -752,42 +1375,76 @@
     <div class="coverage-card">
       <div class="coverage-num">01</div>
       <div class="coverage-name">Neck</div>
-      <div class="coverage-how">Plate neck curl — Day 2 (3×12–15)</div>
+      <div class="coverage-how">Plate neck curl (Wed, loaded) · Neck mobility (Thu, unloaded)</div>
+      <div class="week-dots" aria-label="Trained Wed, Thu">
+        <span></span><span></span><span class="active"></span><span class="active"></span><span></span><span></span><span></span>
+      </div>
     </div>
     <div class="coverage-card">
       <div class="coverage-num">02</div>
       <div class="coverage-name">Traps</div>
-      <div class="coverage-how">Rack pull Day 2 + Day 4 · Farmer's walk Day 4</div>
+      <div class="coverage-how">Rack pull Wed + Sat · Farmer's walk Sat</div>
+      <div class="week-dots" aria-label="Trained Wed, Sat">
+        <span></span><span></span><span class="active"></span><span></span><span></span><span class="active"></span><span></span>
+      </div>
     </div>
     <div class="coverage-card">
       <div class="coverage-num">03</div>
       <div class="coverage-name">Upper Back</div>
       <div class="coverage-how">Rack pull ×2 · Neutral grip pull-up · Reverse pec dec ×2</div>
+      <div class="week-dots" aria-label="Trained Wed, Sat">
+        <span></span><span></span><span class="active"></span><span></span><span></span><span class="active"></span><span></span>
+      </div>
     </div>
     <div class="coverage-card">
       <div class="coverage-num">04</div>
       <div class="coverage-name">Arms</div>
       <div class="coverage-how">Dips · Forehead press · Tricep ext · Preacher curl ×2 · Wrist curl</div>
+      <div class="week-dots" aria-label="Trained Mon, Wed, Sat">
+        <span class="active"></span><span></span><span class="active"></span><span></span><span></span><span class="active"></span><span></span>
+      </div>
     </div>
     <div class="coverage-card">
       <div class="coverage-num">05</div>
       <div class="coverage-name">Abs</div>
-      <div class="coverage-how">Barbell crunch Day 1 · Hanging leg raise Day 2 · Daily vacuums</div>
+      <div class="coverage-how">Barbell crunch (Mon) · Elevated core + weighted sit-ups (Tue) · Hanging leg raise (Sat) — 3x/week, 3 distinct angles</div>
+      <div class="week-dots" aria-label="Trained Mon, Tue, Sat">
+        <span class="active"></span><span class="active"></span><span></span><span></span><span></span><span class="active"></span><span></span>
+      </div>
     </div>
     <div class="coverage-card">
       <div class="coverage-num">06</div>
       <div class="coverage-name">Glutes</div>
-      <div class="coverage-how">Hip extension isometrics · KAS bridge · Split squat — spec protocol opens Day 3</div>
+      <div class="coverage-how">Hip extension isometrics · KAS bridge · Split squat — spec protocol opens Friday</div>
+      <div class="week-dots" aria-label="Trained Fri, Sat">
+        <span></span><span></span><span></span><span></span><span class="active"></span><span class="active"></span><span></span>
+      </div>
     </div>
     <div class="coverage-card">
       <div class="coverage-num">07</div>
       <div class="coverage-name">Calves</div>
-      <div class="coverage-how">Seated calf raise — Day 3 + Day 4 (2x weekly)</div>
+      <div class="coverage-how">Seated calf raise — Fri + Sat (2x weekly)</div>
+      <div class="week-dots" aria-label="Trained Fri, Sat">
+        <span></span><span></span><span></span><span></span><span class="active"></span><span class="active"></span><span></span>
+      </div>
     </div>
   </div>
 
+  <div style="display:flex; gap:5px; margin-top:12px; padding-left:2px;">
+    <span style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--muted); letter-spacing:0.1em;">WEEK →</span>
+  </div>
+  <div style="display:flex; gap:5px; margin-top:4px; margin-bottom:24px; padding-left:2px;">
+    <span style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--faint); width:8px; text-align:center;">M</span>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--faint); width:8px; text-align:center;">T</span>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--faint); width:8px; text-align:center;">W</span>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--faint); width:8px; text-align:center;">T</span>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--faint); width:8px; text-align:center;">F</span>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--faint); width:8px; text-align:center;">S</span>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--faint); width:8px; text-align:center;">S</span>
+  </div>
+
   <div class="infobox" style="margin-top: 24px;">
-    <strong>All 10 priority exercises placed:</strong> Rack Pull · Dip · Dead Stop Press · Neck Curl · Neutral Grip Pull-Up · Hinge Pattern (45° hip ext / KAS bridge) · Deep Leg Press · Split Squat · Barbell Ab Crunch · Farmer's Walk. Every green-dot exercise in the tables above is one of the 10.
+    <strong>All 10 priority exercises placed:</strong> Rack Pull · Dip · Dead Stop Press · Neck Curl · Neutral Grip Pull-Up · Hinge Pattern (45° hip ext / KAS bridge) · Deep Leg Press · Split Squat · Barbell Ab Crunch · Farmer's Walk.
   </div>
 </div>
 
@@ -805,7 +1462,7 @@
 
   <div class="rule-card">
     <div class="rule-title">Effort Standard: 1–2 Reps From Failure</div>
-    <div class="rule-body">You're in a surplus now — recovery supports real effort. Every working set ends 1–2 clean reps shy of failure. If you could have done 4 more reps, the set didn't count.</div>
+    <div class="rule-body">You're in a surplus — recovery supports real effort. Every working set ends 1–2 clean reps shy of failure. If you could have done 4 more reps, the set didn't count.</div>
   </div>
 
   <div class="rule-card">
@@ -814,22 +1471,27 @@
   </div>
 
   <div class="rule-card">
+    <div class="rule-title">Recovery Days Have a Job</div>
+    <div class="rule-body">Tuesday and Thursday aren't "off" — they're Zone 2, conditioning, and mobility with intent. Skipping them isn't extra rest, it's a missed opportunity to actually recover faster and move better.</div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-title">Sunday Is Sacred</div>
+    <div class="rule-body">One day a week, nothing gets measured. No macros, no sets, no reps. Full nervous system reset — sun, water, ground.</div>
+  </div>
+
+  <div class="rule-card">
     <div class="rule-title">Fatigue Checkpoint</div>
     <div class="rule-body">If two consecutive sessions show strength regression on your logged lifts, cut volume 30% for 4–5 days, sleep more, then resume. Regression is data, not failure.</div>
   </div>
 
   <div class="rule-card">
-    <div class="rule-title">Zone 2: Capped at 2–3 Sessions/Week</div>
-    <div class="rule-body">Cardio is now a health tool, not a fat loss tool. Daily fasted cardio eats the surplus you're trying to build with. Keep 2–3 Zone 2 sessions for heart health and recovery — no more.</div>
-  </div>
-
-  <div class="rule-card">
-    <div class="rule-title">Daily Vacuums — Unchanged</div>
-    <div class="rule-body">3 rounds every morning, fasted, exactly as you've been doing. Not part of gym sessions. The transverse abdominis work continues through the bulk to keep the waist tight as the body grows.</div>
+    <div class="rule-title">Daily Vacuums &amp; Walk — Unchanged</div>
+    <div class="rule-body">3 rounds of vacuums + 20 min walk, every morning, fasted, exactly as you've been doing. Not part of any lifting session. These happen regardless of what day it is.</div>
   </div>
 </div>
 
-<footer>CHRIS ALE · V4 · SECTION 1: WORKOUT PROGRAM · LEAN BULK PHASE</footer>
+<footer>CHRIS ALE · V4 · FULL WEEKLY PROTOCOL · LEAN BULK PHASE</footer>
 
 <script>
   const sections = document.querySelectorAll('.section');

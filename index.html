@@ -23,16 +23,16 @@
     --carbon: #0d0d0f;
     --deep: #0a0a0c;
     --slate: #1a1d23;
-    --line: #1e2127;
-    --line-soft: #16181d;
+    --line: #262a33;
+    --line-soft: #1e222a;
     --accent: #c8f54a;
     --accent-dim: rgba(200,245,74,0.10);
     --accent-glow: rgba(200,245,74,0.35);
-    --titanium: #b8bcc4;
-    --text: #e8eaed;
-    --muted: #7a808a;
-    --faint: #4a4f58;
-    --dim: #3a3f47;
+    --titanium: #ccd2dc;
+    --text: #eef1f5;
+    --muted: #9aa3b0;
+    --faint: #7d8797;
+    --dim: #5a6472;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -87,7 +87,8 @@
     color: var(--faint);
     text-decoration: none;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+    font-size: 11px;
+    font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     padding: 18px 13px;
@@ -119,9 +120,10 @@
 
   .telem-label {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
+    font-weight: 500;
     letter-spacing: 0.2em;
-    color: var(--faint);
+    color: var(--muted);
     margin-bottom: 12px;
     display: flex;
     justify-content: space-between;
@@ -155,7 +157,8 @@
   }
   .telem-days span {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
+    font-weight: 500;
     color: var(--faint);
     text-align: center;
     letter-spacing: 0.1em;
@@ -171,8 +174,9 @@
 
   .hero-status {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--faint);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
     letter-spacing: 0.16em;
     display: flex;
     align-items: center;
@@ -217,14 +221,15 @@
   .readout { background: var(--carbon); padding: 16px 18px; }
   .readout-l {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
+    font-weight: 500;
     letter-spacing: 0.16em;
     color: var(--faint);
     margin-bottom: 6px;
   }
   .readout-v {
-    font-size: 25px;
-    font-weight: 600;
+    font-size: 27px;
+    font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1;
   }
@@ -241,24 +246,54 @@
 
   .sec-head {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     gap: 16px;
-    padding-bottom: 14px;
+    padding-bottom: 16px;
     border-bottom: 1px solid var(--line);
     margin-bottom: 6px;
     flex-wrap: wrap;
   }
 
-  .sec-title {
-    font-size: 20px;
+  .sec-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  /* Boxed day badge — green = lift, gray = recovery */
+  .day-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
     font-weight: 600;
+    letter-spacing: 0.1em;
+    padding: 7px 13px;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+    box-shadow: 0 0 18px rgba(200,245,74,0.12);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .day-badge.rest {
+    border-color: var(--dim);
+    color: var(--titanium);
+    background: rgba(90,100,114,0.14);
+    box-shadow: none;
+  }
+
+  .sec-title {
+    font-size: 21px;
+    font-weight: 700;
     letter-spacing: -0.025em;
   }
 
   .sec-meta {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+    font-size: 11px;
+    font-weight: 500;
     color: var(--faint);
     letter-spacing: 0.12em;
     white-space: nowrap;
@@ -266,11 +301,11 @@
   .sec-meta.hot { color: var(--accent); }
 
   .sec-focus {
-    font-size: 12.5px;
+    font-size: 13px;
     color: var(--muted);
     line-height: 1.65;
     padding: 14px 0 6px;
-    max-width: 640px;
+    max-width: 660px;
   }
 
   /* ── EXERCISE ROW ── */
@@ -290,24 +325,25 @@
     .ex-sets::after {
       content: attr(data-rest);
       display: block;
-      font-size: 9px;
+      font-size: 10px;
+      font-weight: 500;
       color: var(--faint);
       letter-spacing: 0.1em;
-      margin-top: 3px;
+      margin-top: 4px;
       text-align: right;
     }
   }
 
   .ex-name {
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.012em;
   }
   .ex-name.key { color: var(--accent); }
 
   .key-dot {
     display: inline-block;
-    width: 4px; height: 4px;
+    width: 5px; height: 5px;
     background: var(--accent);
     border-radius: 50%;
     margin-right: 7px;
@@ -318,16 +354,18 @@
   }
 
   .ex-cue {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--faint);
-    margin-top: 2px;
-    line-height: 1.45;
+    margin-top: 3px;
+    line-height: 1.5;
   }
 
   .ex-sets {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--titanium);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
     white-space: nowrap;
     text-align: right;
   }
@@ -338,8 +376,9 @@
     display: grid;
     place-items: center;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    color: var(--muted);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--titanium);
     background: conic-gradient(var(--accent) var(--p), var(--line) var(--p));
     position: relative;
   }
@@ -378,19 +417,20 @@
     display: grid;
     place-items: center;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 700;
     color: var(--accent);
     flex-shrink: 0;
   }
 
-  .daily-name { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+  .daily-name { font-size: 17px; font-weight: 700; letter-spacing: -0.015em; }
   .daily-sub {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+    font-size: 11px;
+    font-weight: 500;
     color: var(--faint);
     letter-spacing: 0.08em;
-    margin-top: 3px;
+    margin-top: 4px;
   }
 
   /* ── WEEK GRID ── */
@@ -408,23 +448,32 @@
     background: var(--deep);
     padding: 16px 12px;
     cursor: pointer;
-    border-top: 2px solid var(--accent);
+    border-top: 3px solid var(--accent);
     transition: background 0.15s;
   }
   .wday:hover { background: var(--slate); }
   .wday.rest { border-top-color: var(--dim); }
 
   .wday-d {
+    display: inline-block;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
+    font-size: 11px;
+    font-weight: 600;
     color: var(--accent);
     letter-spacing: 0.14em;
-    margin-bottom: 6px;
+    border: 1px solid rgba(200,245,74,0.4);
+    background: var(--accent-dim);
+    padding: 3px 7px;
+    margin-bottom: 9px;
   }
-  .wday.rest .wday-d { color: var(--faint); }
+  .wday.rest .wday-d {
+    color: var(--titanium);
+    border-color: var(--dim);
+    background: rgba(90,100,114,0.14);
+  }
 
-  .wday-n { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
-  .wday-f { font-size: 10px; color: var(--faint); margin-top: 4px; line-height: 1.4; }
+  .wday-n { font-size: 16px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; }
+  .wday-f { font-size: 11px; color: var(--faint); margin-top: 5px; line-height: 1.45; }
 
   /* ── COVERAGE ── */
   .cov {
@@ -438,13 +487,14 @@
   .cov-card { background: var(--deep); padding: 18px; }
   .cov-n {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
+    font-weight: 500;
     color: var(--faint);
     letter-spacing: 0.16em;
     margin-bottom: 6px;
   }
-  .cov-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 5px; }
-  .cov-how { font-size: 11px; color: var(--faint); line-height: 1.5; min-height: 33px; }
+  .cov-name { font-size: 16px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 6px; }
+  .cov-how { font-size: 12px; color: var(--faint); line-height: 1.5; min-height: 36px; }
 
   .dots { display: flex; gap: 4px; margin-top: 12px; }
   .dots span {
@@ -463,7 +513,8 @@
   }
   .dots-key span {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 8px;
+    font-size: 9px;
+    font-weight: 600;
     color: var(--dim);
     width: 7px;
     text-align: center;
@@ -482,25 +533,27 @@
 
   .proto-n {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--faint);
-    border: 1px solid var(--line);
-    width: 26px; height: 26px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    border: 1px solid var(--dim);
+    width: 28px; height: 28px;
     display: grid; place-items: center;
     border-radius: 50%;
     flex-shrink: 0;
     margin-top: 1px;
   }
 
-  .proto-name { font-size: 13.5px; font-weight: 500; }
+  .proto-name { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
   .proto-vol {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: 600;
     color: var(--accent);
-    letter-spacing: 0.05em;
-    margin: 3px 0 5px;
+    letter-spacing: 0.04em;
+    margin: 4px 0 6px;
   }
-  .proto-desc { font-size: 11.5px; color: var(--faint); line-height: 1.5; }
+  .proto-desc { font-size: 12px; color: var(--faint); line-height: 1.5; }
 
   .flag {
     display: inline-block;
@@ -520,14 +573,15 @@
   .rule { background: var(--deep); padding: 20px; }
   .rule-n {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
+    font-weight: 600;
     color: var(--accent);
     letter-spacing: 0.16em;
     margin-bottom: 8px;
   }
-  .rule-t { font-size: 15px; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 6px; }
-  .rule-b { font-size: 12px; color: var(--faint); line-height: 1.65; }
-  .rule-b strong { color: var(--muted); font-weight: 500; }
+  .rule-t { font-size: 16px; font-weight: 700; letter-spacing: -0.018em; margin-bottom: 7px; }
+  .rule-b { font-size: 12.5px; color: var(--faint); line-height: 1.65; }
+  .rule-b strong { color: var(--text); font-weight: 600; }
 
   /* ── NOTE ── */
   .note {
@@ -536,24 +590,25 @@
     border-left: 2px solid var(--accent);
     padding: 14px 18px;
     margin-top: 18px;
-    font-size: 12.5px;
-    color: var(--faint);
+    font-size: 13px;
+    color: var(--muted);
     line-height: 1.65;
   }
-  .note strong { color: var(--muted); font-weight: 500; }
+  .note strong { color: var(--text); font-weight: 600; }
 
   /* ── RESET CARDS ── */
   .reset { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
   .reset-card { background: var(--deep); padding: 20px; }
-  .reset-t { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .reset-t { font-size: 16px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 5px; }
   .reset-time {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+    font-size: 11px;
+    font-weight: 600;
     color: var(--accent);
     letter-spacing: 0.08em;
     margin-bottom: 8px;
   }
-  .reset-d { font-size: 11.5px; color: var(--faint); line-height: 1.5; }
+  .reset-d { font-size: 12px; color: var(--faint); line-height: 1.5; }
 
   footer {
     max-width: 1000px;
@@ -561,7 +616,8 @@
     text-align: center;
     padding: 40px 24px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+    font-size: 11px;
+    font-weight: 500;
     color: var(--dim);
     letter-spacing: 0.16em;
   }
@@ -621,7 +677,7 @@
 <!-- DAILY -->
 <div class="section" id="daily">
   <div class="sec-head">
-    <div class="sec-title">Daily Non-Negotiables</div>
+    <div class="sec-title-wrap"><div class="sec-title">Daily Non-Negotiables</div></div>
     <div class="sec-meta hot">EVERY DAY · NO EXCEPTIONS</div>
   </div>
   <div class="sec-focus">These sit above the entire week. They happen regardless of what training day it is — lift day, recovery day, or Sunday reset.</div>
@@ -647,7 +703,7 @@
 <!-- WEEK -->
 <div class="section" id="week">
   <div class="sec-head">
-    <div class="sec-title">The Week</div>
+    <div class="sec-title-wrap"><div class="sec-title">The Week</div></div>
     <div class="sec-meta">4 LIFT · 2 RECOVERY · 1 RESET</div>
   </div>
 
@@ -697,8 +753,11 @@
 <!-- MONDAY -->
 <div class="section" id="monday">
   <div class="sec-head">
-    <div class="sec-title">Push — Chest, Shoulders, Triceps</div>
-    <div class="sec-meta">MON · 5 EXERCISES · 11 SETS</div>
+    <div class="sec-title-wrap">
+      <span class="day-badge">MON</span>
+      <div class="sec-title">Push — Chest, Shoulders, Triceps</div>
+    </div>
+    <div class="sec-meta">5 EXERCISES · 11 SETS</div>
   </div>
   <div class="sec-focus">Chest volume from three angles first, dip as the compound bridge, one tricep isolation move to close. Second tricep hit lands Saturday to keep bicep/tricep volume even.</div>
 
@@ -732,8 +791,11 @@
 <!-- TUESDAY -->
 <div class="section" id="tuesday">
   <div class="sec-head">
-    <div class="sec-title">LISS, Abs &amp; Mobility</div>
-    <div class="sec-meta">TUE · RECOVERY · PRIMARY AB DAY</div>
+    <div class="sec-title-wrap">
+      <span class="day-badge rest">TUE</span>
+      <div class="sec-title">LISS, Abs &amp; Mobility</div>
+    </div>
+    <div class="sec-meta">RECOVERY · PRIMARY AB DAY</div>
   </div>
   <div class="sec-focus">Primary ab day. Zone 2 first, then two ab movements back to back — the Total Gym elevated slider for the lower ab / leg raise pattern, then a loaded barbell crunch for the upper abs. Mobility closes it out.</div>
 
@@ -762,8 +824,11 @@
 <!-- WEDNESDAY -->
 <div class="section" id="wednesday">
   <div class="sec-head">
-    <div class="sec-title">Pull — Traps, Upper Back, Biceps, Neck</div>
-    <div class="sec-meta">WED · 5 EXERCISES · 11 SETS</div>
+    <div class="sec-title-wrap">
+      <span class="day-badge">WED</span>
+      <div class="sec-title">Pull — Traps, Upper Back, Biceps, Neck</div>
+    </div>
+    <div class="sec-meta">5 EXERCISES · 11 SETS</div>
   </div>
   <div class="sec-focus">Biceps and rear delt first, then the heavy rack pull and pull-up work, finishing with neck. Up-and-down thickness is the signature of the masculine physique.</div>
 
@@ -797,8 +862,11 @@
 <!-- THURSDAY -->
 <div class="section" id="thursday">
   <div class="sec-head">
-    <div class="sec-title">HIIT, Neck &amp; Mobility</div>
-    <div class="sec-meta">THU · RECOVERY</div>
+    <div class="sec-title-wrap">
+      <span class="day-badge rest">THU</span>
+      <div class="sec-title">HIIT, Neck &amp; Mobility</div>
+    </div>
+    <div class="sec-meta">RECOVERY</div>
   </div>
   <div class="sec-focus">Short, sharp conditioning between Pull and Legs. Neck gets an unloaded mobility pass to balance Wednesday's loaded curl. Mobility circuit repeats.</div>
 
@@ -822,8 +890,11 @@
 <!-- FRIDAY -->
 <div class="section" id="friday">
   <div class="sec-head">
-    <div class="sec-title">Legs — Hamstrings, Glutes, Quads, Calves</div>
-    <div class="sec-meta hot">FRI · 6 EXERCISES · 13 SETS · PEAK</div>
+    <div class="sec-title-wrap">
+      <span class="day-badge">FRI</span>
+      <div class="sec-title">Legs — Hamstrings, Glutes, Quads, Calves</div>
+    </div>
+    <div class="sec-meta hot">6 EXERCISES · 13 SETS · PEAK</div>
   </div>
   <div class="sec-focus">Hamstrings first, then two dedicated glute movements — hip extension and KAS bridge — restoring full glute volume since it's a stated priority. Quads finished with extension and deep press, calves last.</div>
 
@@ -862,8 +933,11 @@
 <!-- SATURDAY -->
 <div class="section" id="saturday">
   <div class="sec-head">
-    <div class="sec-title">Posture, Arms &amp; Details</div>
-    <div class="sec-meta">SAT · 9 EXERCISES · 20 SETS</div>
+    <div class="sec-title-wrap">
+      <span class="day-badge">SAT</span>
+      <div class="sec-title">Posture, Arms &amp; Details</div>
+    </div>
+    <div class="sec-meta">9 EXERCISES · 20 SETS</div>
   </div>
   <div class="sec-focus">The detail day that separates the archetype from the average lifter: second weekly hits for upper back, biceps, triceps, and calves, plus forearms, split squats, and the farmer's walk finisher. Biceps and triceps sit back to back here to keep arm volume even.</div>
 
@@ -917,8 +991,11 @@
 <!-- SUNDAY -->
 <div class="section" id="sunday">
   <div class="sec-head">
-    <div class="sec-title">Full Reset</div>
-    <div class="sec-meta">SUN · ZERO INPUT</div>
+    <div class="sec-title-wrap">
+      <span class="day-badge rest">SUN</span>
+      <div class="sec-title">Full Reset</div>
+    </div>
+    <div class="sec-meta">ZERO INPUT</div>
   </div>
   <div class="sec-focus">No structured training. No tracking of any kind — no calories, no reps, no sets. The only jobs today: sun, water, ground, and rest. This is the day your nervous system actually recovers.</div>
 
@@ -949,7 +1026,7 @@
 <!-- MOBILITY -->
 <div class="section" id="mobility">
   <div class="sec-head">
-    <div class="sec-title">Premium Mobility Protocol</div>
+    <div class="sec-title-wrap"><div class="sec-title">Premium Mobility Protocol</div></div>
     <div class="sec-meta">TUE + THU · 12–15 MIN</div>
   </div>
   <div class="sec-focus">Built for the exact zones heavy rack pulls and screen time chew up: lower back, neck, hips, thoracic spine. Sequence runs dynamic → static, spine → hips → neck → down-regulation.</div>
@@ -1048,7 +1125,7 @@
 <!-- COVERAGE -->
 <div class="section" id="coverage">
   <div class="sec-head">
-    <div class="sec-title">Muscle Group Coverage</div>
+    <div class="sec-title-wrap"><div class="sec-title">Muscle Group Coverage</div></div>
     <div class="sec-meta">7 GROUPS · ALL 2× / WK</div>
   </div>
 
@@ -1109,7 +1186,7 @@
 <!-- RULES -->
 <div class="section" id="rules">
   <div class="sec-head">
-    <div class="sec-title">Operating Rules</div>
+    <div class="sec-title-wrap"><div class="sec-title">Operating Rules</div></div>
     <div class="sec-meta hot">NON-NEGOTIABLE</div>
   </div>
 

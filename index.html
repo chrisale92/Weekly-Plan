@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>V5 — Archetype Protocol · Recomp</title>
- 
+
 <!-- PWA / iOS Home Screen App Configuration -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0d0d0f">
@@ -15,9 +15,9 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
- 
+
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
- 
+
 <style>
   :root {
     --carbon: #0d0d0f;
@@ -34,10 +34,10 @@
     --faint: #7d8797;
     --dim: #5a6472;
   }
- 
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
- 
+
   body {
     background:
       radial-gradient(ellipse 900px 450px at 50% 0%, rgba(200,245,74,0.035), transparent 70%),
@@ -53,7 +53,7 @@
     -webkit-tap-highlight-color: transparent;
     overscroll-behavior-y: contain;
   }
- 
+
   /* ── NAV ── */
   nav {
     position: sticky;
@@ -69,7 +69,7 @@
     scrollbar-width: none;
   }
   nav::-webkit-scrollbar { display: none; }
- 
+
   .nav-logo {
     font-size: 13px;
     font-weight: 700;
@@ -81,7 +81,7 @@
     flex-shrink: 0;
   }
   .nav-logo span { color: var(--accent); }
- 
+
   nav a {
     position: relative;
     color: var(--faint);
@@ -108,7 +108,7 @@
   }
   nav a:hover { color: var(--accent); }
   nav a:hover::after { transform: scaleX(1); }
- 
+
   /* ── TELEMETRY STRIP ── */
   .telem {
     padding: 22px 24px;
@@ -117,7 +117,7 @@
     max-width: 1000px;
     margin: 0 auto;
   }
- 
+
   .telem-label {
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
@@ -129,7 +129,7 @@
     justify-content: space-between;
   }
   .telem-label span:last-child { color: var(--accent); }
- 
+
   .telem-bars {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -137,7 +137,7 @@
     align-items: end;
     height: 54px;
   }
- 
+
   .bar { height: 100%; display: flex; align-items: flex-end; cursor: pointer; }
   .bar i {
     display: block;
@@ -148,7 +148,7 @@
   }
   .bar:hover i { filter: brightness(1.3); }
   .bar.rest i { background: linear-gradient(180deg, var(--dim), rgba(58,63,71,0.2)); }
- 
+
   .telem-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -163,7 +163,7 @@
     text-align: center;
     letter-spacing: 0.1em;
   }
- 
+
   /* ── HERO ── */
   .hero {
     max-width: 1000px;
@@ -171,7 +171,7 @@
     padding: 56px 24px 48px;
     border-bottom: 1px solid var(--line);
   }
- 
+
   .hero-status {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
@@ -192,7 +192,7 @@
     animation: pulse 2.4s ease-in-out infinite;
   }
   @keyframes pulse { 0%,100% { opacity:1 } 50% { opacity:0.35 } }
- 
+
   .hero h1 {
     font-size: clamp(38px, 6.5vw, 62px);
     font-weight: 600;
@@ -201,14 +201,14 @@
     margin-bottom: 16px;
   }
   .hero h1 span { color: var(--accent); }
- 
+
   .hero-sub {
     font-size: 14px;
     color: var(--muted);
     max-width: 520px;
     line-height: 1.7;
   }
- 
+
   .readouts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -217,7 +217,7 @@
     border: 1px solid var(--line);
     margin-top: 32px;
   }
- 
+
   .readout { background: var(--carbon); padding: 16px 18px; }
   .readout-l {
     font-family: 'JetBrains Mono', monospace;
@@ -235,7 +235,7 @@
   }
   .readout-v small { font-size: 12px; color: var(--muted); font-weight: 400; margin-left: 2px; }
   .readout.hot .readout-v { color: var(--accent); }
- 
+
   /* ── SECTIONS ── */
   .section {
     max-width: 1000px;
@@ -243,7 +243,7 @@
     padding: 44px 24px;
     border-bottom: 1px solid var(--line);
   }
- 
+
   .sec-head {
     display: flex;
     align-items: center;
@@ -254,14 +254,14 @@
     margin-bottom: 6px;
     flex-wrap: wrap;
   }
- 
+
   .sec-title-wrap {
     display: flex;
     align-items: center;
     gap: 14px;
     flex-wrap: wrap;
   }
- 
+
   /* Boxed day badge — green = lift, gray = recovery */
   .day-badge {
     font-family: 'JetBrains Mono', monospace;
@@ -276,20 +276,20 @@
     white-space: nowrap;
     flex-shrink: 0;
   }
- 
+
   .day-badge.rest {
     border-color: var(--dim);
     color: var(--titanium);
     background: rgba(90,100,114,0.14);
     box-shadow: none;
   }
- 
+
   .sec-title {
     font-size: 21px;
     font-weight: 700;
     letter-spacing: -0.025em;
   }
- 
+
   .sec-meta {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
@@ -299,7 +299,7 @@
     white-space: nowrap;
   }
   .sec-meta.hot { color: var(--accent); }
- 
+
   .sec-focus {
     font-size: 13px;
     color: var(--muted);
@@ -307,7 +307,7 @@
     padding: 14px 0 6px;
     max-width: 660px;
   }
- 
+
   /* ── EXERCISE ROW ── */
   .ex {
     display: grid;
@@ -318,7 +318,7 @@
     border-bottom: 1px solid var(--line-soft);
   }
   .ex:last-child { border-bottom: none; }
- 
+
   @media (max-width: 560px) {
     .ex { grid-template-columns: 1fr auto; gap: 12px; }
     .ring { display: none; }
@@ -333,14 +333,14 @@
       text-align: right;
     }
   }
- 
+
   .ex-name {
     font-size: 15px;
     font-weight: 600;
     letter-spacing: -0.012em;
   }
   .ex-name.key { color: var(--accent); }
- 
+
   .key-dot {
     display: inline-block;
     width: 5px; height: 5px;
@@ -352,14 +352,14 @@
     top: -1px;
     box-shadow: 0 0 6px var(--accent-glow);
   }
- 
+
   .ex-cue {
     font-size: 12px;
     color: var(--faint);
     margin-top: 3px;
     line-height: 1.5;
   }
- 
+
   .tag-new {
     display: inline-block;
     font-family: 'JetBrains Mono', monospace;
@@ -374,7 +374,7 @@
     position: relative;
     top: -1px;
   }
- 
+
   .ex-sets {
     font-family: 'JetBrains Mono', monospace;
     font-size: 15px;
@@ -384,7 +384,7 @@
     white-space: nowrap;
     text-align: right;
   }
- 
+
   .ring {
     width: 36px; height: 36px;
     border-radius: 50%;
@@ -405,7 +405,7 @@
     border-radius: 50%;
   }
   .ring span { position: relative; z-index: 1; }
- 
+
   /* ── DAILY CARD ── */
   .daily {
     display: grid;
@@ -414,7 +414,7 @@
     background: var(--line);
     border: 1px solid var(--line);
   }
- 
+
   .daily-item {
     background: var(--deep);
     padding: 22px;
@@ -422,7 +422,7 @@
     align-items: center;
     gap: 16px;
   }
- 
+
   .daily-icon {
     width: 40px; height: 40px;
     border-radius: 50%;
@@ -437,7 +437,7 @@
     color: var(--accent);
     flex-shrink: 0;
   }
- 
+
   .daily-name { font-size: 17px; font-weight: 700; letter-spacing: -0.015em; }
   .daily-sub {
     font-family: 'JetBrains Mono', monospace;
@@ -447,7 +447,7 @@
     letter-spacing: 0.08em;
     margin-top: 4px;
   }
- 
+
   /* ── WEEK GRID ── */
   .week {
     display: grid;
@@ -458,7 +458,7 @@
   }
   @media (max-width: 720px) { .week { grid-template-columns: repeat(4, 1fr); } }
   @media (max-width: 420px) { .week { grid-template-columns: repeat(2, 1fr); } }
- 
+
   .wday {
     background: var(--deep);
     padding: 16px 12px;
@@ -468,7 +468,7 @@
   }
   .wday:hover { background: var(--slate); }
   .wday.rest { border-top-color: var(--dim); }
- 
+
   .wday-d {
     display: inline-block;
     font-family: 'JetBrains Mono', monospace;
@@ -486,10 +486,10 @@
     border-color: var(--dim);
     background: rgba(90,100,114,0.14);
   }
- 
+
   .wday-n { font-size: 16px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; }
   .wday-f { font-size: 11px; color: var(--faint); margin-top: 5px; line-height: 1.45; }
- 
+
   /* ── COVERAGE ── */
   .cov {
     display: grid;
@@ -498,7 +498,7 @@
     background: var(--line);
     border: 1px solid var(--line);
   }
- 
+
   .cov-card { background: var(--deep); padding: 18px; }
   .cov-n {
     font-family: 'JetBrains Mono', monospace;
@@ -510,7 +510,7 @@
   }
   .cov-name { font-size: 16px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 6px; }
   .cov-how { font-size: 12px; color: var(--faint); line-height: 1.5; min-height: 36px; }
- 
+
   .cov-sets {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
@@ -519,7 +519,7 @@
     letter-spacing: 0.08em;
     margin-top: 10px;
   }
- 
+
   .dots { display: flex; gap: 4px; margin-top: 12px; }
   .dots span {
     width: 7px; height: 7px;
@@ -528,7 +528,7 @@
     flex-shrink: 0;
   }
   .dots span.on { background: var(--accent); box-shadow: 0 0 6px var(--accent-glow); }
- 
+
   .dots-key {
     display: flex;
     gap: 4px;
@@ -543,10 +543,10 @@
     width: 7px;
     text-align: center;
   }
- 
+
   /* ── PROTOCOL LIST (mobility) ── */
   .proto { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); }
- 
+
   .proto-item {
     background: var(--deep);
     padding: 16px 20px;
@@ -554,7 +554,7 @@
     gap: 16px;
     align-items: flex-start;
   }
- 
+
   .proto-n {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
@@ -567,7 +567,7 @@
     flex-shrink: 0;
     margin-top: 1px;
   }
- 
+
   .proto-name { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
   .proto-vol {
     font-family: 'JetBrains Mono', monospace;
@@ -578,7 +578,7 @@
     margin: 4px 0 6px;
   }
   .proto-desc { font-size: 12px; color: var(--faint); line-height: 1.5; }
- 
+
   .flag {
     display: inline-block;
     font-family: 'JetBrains Mono', monospace;
@@ -590,10 +590,10 @@
     padding: 2px 7px;
     margin-top: 8px;
   }
- 
+
   /* ── RULES ── */
   .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
- 
+
   .rule { background: var(--deep); padding: 20px; }
   .rule-n {
     font-family: 'JetBrains Mono', monospace;
@@ -606,7 +606,7 @@
   .rule-t { font-size: 16px; font-weight: 700; letter-spacing: -0.018em; margin-bottom: 7px; }
   .rule-b { font-size: 12.5px; color: var(--faint); line-height: 1.65; }
   .rule-b strong { color: var(--text); font-weight: 600; }
- 
+
   /* ── NOTE ── */
   .note {
     background: var(--deep);
@@ -620,7 +620,7 @@
   }
   .note strong { color: var(--text); font-weight: 600; }
   .note.flat { border-left-color: var(--dim); }
- 
+
   /* ── FUEL TABLE ── */
   .fuel { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); }
   .fuel-row {
@@ -632,7 +632,7 @@
     align-items: center;
   }
   @media (max-width: 560px) { .fuel-row { grid-template-columns: 62px 1fr; } .fuel-macro { grid-column: 2; text-align: left; margin-top: 4px; } }
- 
+
   .fuel-time {
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
@@ -650,7 +650,7 @@
     white-space: nowrap;
     text-align: right;
   }
- 
+
   /* ── RESET CARDS ── */
   .reset { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
   .reset-card { background: var(--deep); padding: 20px; }
@@ -664,7 +664,7 @@
     margin-bottom: 8px;
   }
   .reset-d { font-size: 12px; color: var(--faint); line-height: 1.5; }
- 
+
   footer {
     max-width: 1000px;
     margin: 0 auto;
@@ -679,7 +679,7 @@
 </style>
 </head>
 <body>
- 
+
 <nav>
   <div class="nav-logo">V<span>5</span> · RECOMP</div>
   <a href="#daily">Daily</a>
@@ -697,7 +697,7 @@
   <a href="#coverage">Coverage</a>
   <a href="#rules">Rules</a>
 </nav>
- 
+
 <!-- TELEMETRY -->
 <div class="telem">
   <div class="telem-label"><span>WEEKLY TRAINING LOAD</span><span>PEAK · MON</span></div>
@@ -714,13 +714,13 @@
     <span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
   </div>
 </div>
- 
+
 <!-- HERO -->
 <div class="hero">
   <div class="hero-status">SYSTEM ACTIVE · RECOMP PHASE</div>
   <h1>Build the<br><span>Archetype.</span></h1>
   <div class="hero-sub">Five sessions per week. Every core muscle group hit twice, spaced 3–4 days apart. Same movements, same tempo, same standards as V4 — the frequency does the building and the cardio does the stripping.</div>
- 
+
   <div class="readouts">
     <div class="readout hot"><div class="readout-l">LIFT DAYS</div><div class="readout-v">5<small>/wk</small></div></div>
     <div class="readout"><div class="readout-l">SESSION</div><div class="readout-v">55<small>min</small></div></div>
@@ -732,7 +732,7 @@
     <div class="readout"><div class="readout-l">FREQUENCY</div><div class="readout-v">2×<small>/group</small></div></div>
   </div>
 </div>
- 
+
 <!-- DAILY -->
 <div class="section" id="daily">
   <div class="sec-head">
@@ -740,7 +740,7 @@
     <div class="sec-meta hot">EVERY DAY · NO EXCEPTIONS</div>
   </div>
   <div class="sec-focus">These sit above the entire week. They happen regardless of what training day it is. The morning walk changes job in V5 — it was a health habit in the bulk, it's now the base layer of the deficit.</div>
- 
+
   <div class="daily" style="margin-top:16px;">
     <div class="daily-item">
       <div class="daily-icon">01</div>
@@ -772,14 +772,14 @@
     </div>
   </div>
 </div>
- 
+
 <!-- WEEK -->
 <div class="section" id="week">
   <div class="sec-head">
     <div class="sec-title-wrap"><div class="sec-title">The Week</div></div>
     <div class="sec-meta">5 LIFT · 1 RECOVERY · 1 RESET</div>
   </div>
- 
+
   <div class="week" style="margin-top:16px;">
     <div class="wday" onclick="location.href='#monday'">
       <div class="wday-d">MON</div>
@@ -817,7 +817,7 @@
       <div class="wday-f">Sun · Water · Zero tracking</div>
     </div>
   </div>
- 
+
   <div class="note">
     <strong>The spacing math:</strong> Chest and delts run Mon → Fri (4 days) → Mon (3 days). Legs run Tue → Sat (4 days) → Tue (3 days). Pull runs Wed → Sat (3 days) → Wed (4 days). Nothing is ever crammed back to back, and no group waits a full week. That even 3–4 day rhythm is the entire reason V5 exists.
   </div>
@@ -825,7 +825,7 @@
     <strong>What changed from V4:</strong> Thursday's HIIT day became a fifth lift day's worth of work redistributed across Friday. Tuesday's LISS moved to Thursday and absorbed the ab work. The Friday leg session moved to Tuesday. Saturday kept its detail identity but picked up the second leg hit. Every exercise, cue, tempo, and rest interval is carried over from V4 unchanged — only placement and frequency moved.
   </div>
 </div>
- 
+
 <!-- MONDAY -->
 <div class="section" id="monday">
   <div class="sec-head">
@@ -836,7 +836,7 @@
     <div class="sec-meta hot">8 EXERCISES · 20 SETS · PEAK</div>
   </div>
   <div class="sec-focus">The heavy push, plus the first of two complete weekly ab sessions. V4 had no direct side delt work — closed with the lateral raise. Barbell ab crunch (loaded, primary) and slider leg raise (lower ab) close the session as a finisher pair, spaced evenly from Thursday's identical second session.</div>
- 
+
   <div class="ex">
     <div><div class="ex-name">Pec Dec Fly</div><div class="ex-cue">Full stretch, hard squeeze. Don't rush the eccentric</div></div>
     <div class="ex-sets" data-rest="REST 60s">3 × 10–12</div>
@@ -883,7 +883,7 @@
     <div class="ring" style="--p:0%"><span>—</span></div>
   </div>
 </div>
- 
+
 <!-- TUESDAY -->
 <div class="section" id="tuesday">
   <div class="sec-head">
@@ -894,7 +894,7 @@
     <div class="sec-meta">7 EXERCISES · 17 SETS</div>
   </div>
   <div class="sec-focus">V4's Friday session, moved to Tuesday so it can be spaced 3–4 days from the second leg hit on Saturday. Deep leg press runs 3 sets — quads were the thinnest coverage in V4. Calves now get a real pair here instead of soleus-only work — first of three weekly calf sessions.</div>
- 
+
   <div class="ex">
     <div><div class="ex-name">Machine Hamstring Curl</div><div class="ex-cue">3 sec eccentric. The lowering phase is the entire exercise</div></div>
     <div class="ex-sets" data-rest="REST 60s">2 × 10–12</div>
@@ -931,7 +931,7 @@
     <div class="ring" style="--p:50%"><span>45</span></div>
   </div>
 </div>
- 
+
 <!-- WEDNESDAY -->
 <div class="section" id="wednesday">
   <div class="sec-head">
@@ -942,7 +942,7 @@
     <div class="sec-meta">6 EXERCISES · 14 SETS</div>
   </div>
   <div class="sec-focus">Biceps and rear delt first, then the new Y-raise for lower-trap and scapular control, then the heavy rack pull and pull-up work, finishing with neck. This is now the dedicated postural-correction session — rear delt, lower trap, and scapular retraction all land here in one sitting.</div>
- 
+
   <div class="ex">
     <div><div class="ex-name">One Arm Cable Preacher Curl</div><div class="ex-cue">Arm braced, constant cable tension. Full stretch, peak squeeze</div></div>
     <div class="ex-sets" data-rest="REST 45s">2 × 10–15</div>
@@ -979,7 +979,7 @@
     <div class="ring" style="--p:0%"><span>—</span></div>
   </div>
 </div>
- 
+
 <!-- THURSDAY -->
 <div class="section" id="thursday">
   <div class="sec-head">
@@ -990,7 +990,7 @@
     <div class="sec-meta hot">DEFICIT DAY · HIIT + AB DAY</div>
   </div>
   <div class="sec-focus">HIIT is back, in a scaled form. Full protocol calls for 6-8 rounds — this runs 4-5 to respect what Thursday is actually for: the lowest-stress day of the week. It goes first, while grip and CNS are fresh, before the long Zone 2 block asks the legs and cardiovascular system for something completely different. Third weekly calf session lands right after cardio. This is still the second of two full weekly ab sessions — identical pairing to Monday, so the whole abdomen gets trained at 2×/week.</div>
- 
+
   <div class="ex">
     <div><div class="ex-name key"><span class="key-dot"></span>Farmer's Carry — HIIT<span class="tag-new">New</span></div><div class="ex-cue">75ft out, 75ft back = 150ft per round. Heaviest load you can hold with full control — let it yank on the traps, don't shrug the scapula up. Liquid chalk for grip. Walk during the rest, don't stop moving. Scaled to 4-5 rounds here, not the full 6-8 — this is still a recovery day at heart</div></div>
     <div class="ex-sets" data-rest="REST 75s">4–5 × 150ft</div>
@@ -1022,7 +1022,7 @@
     <div class="ring" style="--p:55%"><span>50</span></div>
   </div>
 </div>
- 
+
 <!-- FRIDAY -->
 <div class="section" id="friday">
   <div class="sec-head">
@@ -1033,7 +1033,7 @@
     <div class="sec-meta hot">6 EXERCISES · 14 SETS · NEW DAY</div>
   </div>
   <div class="sec-focus">The fifth lift day. Every movement here already existed in V4 — this is Monday's chest work at a lighter, higher-rep emphasis, plus the tricep extension and wrist curl pulled forward off Saturday, plus the second loaded neck hit. No new patterns to learn, just the second exposure.</div>
- 
+
   <div class="ex">
     <div><div class="ex-name key"><span class="key-dot"></span>Machine Chest Press</div><div class="ex-cue">Second chest hit. Lighter than Monday, chase the stretch and the pump — not the load</div></div>
     <div class="ex-sets" data-rest="REST 60s">3 × 12–15</div>
@@ -1070,7 +1070,7 @@
     <div class="ring" style="--p:0%"><span>—</span></div>
   </div>
 </div>
- 
+
 <!-- SATURDAY -->
 <div class="section" id="saturday">
   <div class="sec-head">
@@ -1081,7 +1081,7 @@
     <div class="sec-meta">8 EXERCISES · 20 SETS</div>
   </div>
   <div class="sec-focus">V4's detail day, now carrying the second leg hit. It gave up the tricep extension, wrist curl, and hanging leg raise to keep ab work consolidated to Monday and Thursday — same detail-day identity, tighter session. Calves now get the full gastroc + soleus pair here too — second of three weekly sessions. Farmer's walk moved off this day entirely — it now lives on Thursday as the actual HIIT protocol instead of being duplicated here as a lighter finisher.</div>
- 
+
   <div class="ex">
     <div><div class="ex-name key"><span class="key-dot"></span>Split Squat (Smith)</div><div class="ex-cue">Exposes and fixes imbalances. Big hypertrophy stimulus, light load</div></div>
     <div class="ex-sets" data-rest="REST 75s">2 × 10 each</div>
@@ -1123,7 +1123,7 @@
     <div class="ring" style="--p:50%"><span>45</span></div>
   </div>
 </div>
- 
+
 <!-- SUNDAY -->
 <div class="section" id="sunday">
   <div class="sec-head">
@@ -1134,7 +1134,7 @@
     <div class="sec-meta">ZERO INPUT · OFF-DAY INTAKE</div>
   </div>
   <div class="sec-focus">No structured training. No tracking of any kind — no calories, no reps, no sets. Still an off day nutritionally, but you run it on habit instead of numbers: protein first at every meal, nothing engineered, stop at comfortable. The only jobs today are sun, water, ground, and rest.</div>
- 
+
   <div class="reset" style="margin-top:16px;">
     <div class="reset-card">
       <div class="reset-t">Morning Sun</div>
@@ -1158,7 +1158,7 @@
     </div>
   </div>
 </div>
- 
+
 <!-- FUEL -->
 <div class="section" id="fuel">
   <div class="sec-head">
@@ -1166,7 +1166,7 @@
     <div class="sec-meta hot">190G PROTEIN · ALWAYS</div>
   </div>
   <div class="sec-focus">Two templates, five lift days and two off days. Protein never moves. Carbs are the only real variable — they're high on lift days because they're doing a job, and low on off days because they aren't.</div>
- 
+
   <div class="rules" style="margin-top:16px;">
     <div class="rule">
       <div class="rule-n">LIFT DAY · MON TUE WED FRI SAT</div>
@@ -1179,9 +1179,9 @@
       <div class="rule-b"><strong>190g protein · 115g carbs · 65g fat.</strong> Protein holds. Carbs come down roughly 40% because there's no session to fuel or refill. Thursday is tracked; Sunday runs on habit.</div>
     </div>
   </div>
- 
+
   <div class="sec-focus" style="padding-top:26px;">Lift day timing, built around the 4:00 PM session. The inversion holds from the fuel plan: yogurt in the morning, cream of rice in the afternoon — carbs belong closest to the session.</div>
- 
+
   <div class="fuel" style="margin-top:12px;">
     <div class="fuel-row">
       <div class="fuel-time">6:15</div>
@@ -1214,16 +1214,16 @@
       <div class="fuel-macro">55 / 65 / 25</div>
     </div>
   </div>
- 
+
   <div class="note">
     <strong>Off day adjustment:</strong> drop the 2:30 pre-workout meal entirely and cut the starch at 5:45. Protein target is unchanged, so the 9:00 and 5:45 meals both go up in protein to cover the gap. That single removed meal is most of the 400 kcal difference.
   </div>
- 
+
   <div class="note flat">
     <strong>The honest math on this split:</strong> five maintenance days and two deficit days averages out to roughly 2,085 kcal against a 2,200 maintenance — about a 115 kcal daily deficit, or 800 per week. That is a slow burn from diet alone. <strong>Cardio is what makes the fat loss real in V5</strong>, not the calorie split. If the scale hasn't moved in three weeks, add cardio before you cut lift-day calories — protecting training quality on cycle is worth more than 200 kcal.
   </div>
 </div>
- 
+
 <!-- CARDIO -->
 <div class="section" id="cardio">
   <div class="sec-head">
@@ -1231,7 +1231,7 @@
     <div class="sec-meta hot">FAT LOSS TOOL NOW</div>
   </div>
   <div class="sec-focus">V4 Rule 07 capped cardio because it ate the surplus. There is no surplus in V5. Cardio is now the primary lever moving body fat, and the constraint flips from "don't do too much" to "do enough without touching recovery."</div>
- 
+
   <div class="cov" style="margin-top:16px;">
     <div class="cov-card">
       <div class="cov-n">BASE LAYER</div>
@@ -1264,12 +1264,12 @@
       <div class="cov-sets">1× / WK</div>
     </div>
   </div>
- 
+
   <div class="note">
     <strong>Order matters:</strong> post-lift cardio goes <em>after</em> lifting, never before, and never on a leg day. Zone 2 stays conversational — if you can't hold a sentence, you've turned it into a session that needs recovering from. Thursday's HIIT is the one exception to "cardio never taxes the nervous system" — it's supposed to. That's why it's capped at 4-5 rounds instead of the full protocol.
   </div>
 </div>
- 
+
 <!-- MOBILITY -->
 <div class="section" id="mobility">
   <div class="sec-head">
@@ -1277,7 +1277,7 @@
     <div class="sec-meta">STANDALONE · 12–15 MIN</div>
   </div>
   <div class="sec-focus">No longer built into Thursday's session — that day now runs HIIT, cardio, calves, and abs back to back with nothing left over. This circuit still exists and still matters for the exact zones heavy rack pulls and screen time chew up: lower back, neck, hips, thoracic spine. Run it whenever it fits — a rest-day add-on, a separate short session, or worked in on a lighter week.</div>
- 
+
   <div class="proto" style="margin-top:16px;">
     <div class="proto-item">
       <div class="proto-n">01</div>
@@ -1363,12 +1363,12 @@
       </div>
     </div>
   </div>
- 
+
   <div class="note">
     <strong>Short on time?</strong> Moves 03, 05, and 08 alone cover your biggest structural weak points — anterior pelvic tilt, internally rotated shoulders, hip tightness from rack pulls — in under 5 minutes.
   </div>
 </div>
- 
+
 <!-- COVERAGE -->
 <div class="section" id="coverage">
   <div class="sec-head">
@@ -1376,7 +1376,7 @@
     <div class="sec-meta hot">12 GROUPS · CALVES AT 3×</div>
   </div>
   <div class="sec-focus">V4 claimed 2× across seven groups, but chest, quads, hamstrings, and side delts were the exceptions — chest and quads were once a week and side delts had no direct work at all. This is the fixed chart, broken out to twelve groups with weekly direct set counts.</div>
- 
+
   <div class="cov" style="margin-top:16px;">
     <div class="cov-card">
       <div class="cov-n">GROUP 01</div>
@@ -1463,11 +1463,11 @@
       <div class="dots"><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span><span></span></div>
     </div>
   </div>
- 
+
   <div class="dots-key">
     <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
   </div>
- 
+
   <div class="note">
     <strong>All 10 priority exercises still placed:</strong> Rack Pull · Dip · Dead Stop Press · Neck Curl · Neutral Grip Pull-Up · 45° Hip Extension / KAS Glute Bridge · Deep Leg Press · Split Squat · Barbell Ab Crunch · Farmer's Carry. Green dots in the session tables mark each one — Farmer's Carry now lives on Thursday as the HIIT protocol instead of Saturday's finisher, so it's trained harder, not dropped.
   </div>
@@ -1475,14 +1475,14 @@
     <strong>Why abs run two full sessions, not three partial ones:</strong> barbell ab crunch (primary, loaded, progressive overload — add weight when both sets hit 12 clean reps) covers upper-to-mid rectus abdominis. It doesn't reach the lower ab / hip-flexion pattern, so the Total Gym elevated slider — full-ROM leg raise under constant cable tension — pairs with it every time. Both movements, both days, Monday and Thursday only: that's 2×/week frequency on the whole abdomen instead of three scattered single-movement sessions. Saturday's hanging leg raise was cut to keep the frequency clean at exactly 2×.
   </div>
 </div>
- 
+
 <!-- RULES -->
 <div class="section" id="rules">
   <div class="sec-head">
     <div class="sec-title-wrap"><div class="sec-title">Operating Rules</div></div>
     <div class="sec-meta hot">NON-NEGOTIABLE</div>
   </div>
- 
+
   <div class="rules" style="margin-top:16px;">
     <div class="rule">
       <div class="rule-n">RULE 01</div>
@@ -1545,19 +1545,19 @@
       <div class="rule-b">Weight trend, photos, and logged lift performance. If body fat is flat: <strong>add cardio before you cut calories.</strong> If lifts are regressing: sleep and calories come up before volume comes down. Change one variable at a time or you learn nothing.</div>
     </div>
   </div>
- 
+
   <div class="note">
     <strong>Outside this document:</strong> compound dosing, ancillaries, estrogen management, and PCT structure are not in here and shouldn't be. Those are decisions that get made off bloodwork by a physician who is monitoring you — a sensitive estradiol assay (LC-MS/MS), a trough draw, lipids, hematocrit, and blood pressure. The training and nutrition in this document are built to be the part you control precisely. The medical part is the part you delegate.
   </div>
 </div>
- 
+
 <footer>CHRIS ALE · V5 · ARCHETYPE PROTOCOL · RECOMP PHASE</footer>
- 
+
 <script>
   // Nav active state on scroll
   const sections = document.querySelectorAll('.section');
   const navLinks = document.querySelectorAll('nav a');
- 
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1568,9 +1568,9 @@
       }
     });
   }, { threshold: 0.25 });
- 
+
   sections.forEach(s => observer.observe(s));
- 
+
   // PWA: register service worker for offline use
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -1580,9 +1580,6 @@
     });
   }
 </script>
- 
-</body>
-</html>
- 
+
 </body>
 </html>
